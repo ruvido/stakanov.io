@@ -1,0 +1,104 @@
+{% block bare_invoice %}
+
+   <style>
+    /*#invoice {padding: 4rem; max-width: 600px;}*/
+    #header {font-size: 0.8rem;}
+    #client {margin: 7rem 0;}
+    #details {text-align: right;}
+    #payment {margin: 3rem 0; width: 100%;} 
+    #payment tr td {width: 24%;}
+    #footer {margin-top: 4rem;}
+    #footer tr td {font-size: 0.8rem; width: 30%;}
+    /*.footertd {font-size: 0.8rem; width: 30%;}*/
+    #text table thead {color:red;}
+    </style>
+
+    <article id="invoice">
+
+        <section id="header">
+            Francesco Rao, Ferdinandkopfstr. 12, 79117 Freiburg
+        </section>
+
+        <section id="client">    
+            <p>
+            {{invoice.name}}<br>
+            {{invoice.street}}<br>
+            {{invoice.city}}, {{invoice.postal_code}}<br>
+            {{invoice.country}}
+            </p>
+        </section>
+
+        <section id="details">  
+            <p><b>Rechnungsdatum:</b> {{invoice.invoice_date_string}}<br>
+            <b>Liefer- bzw. Leistungsdatum:</b> {{invoice.event_date_string}}<br>
+            <b>Ust-IdNr.:</b> DE303626375</p>
+        </section>
+
+        <h4>Rechnung Nr {{invoice.invoice_id}}</h4>
+
+        <section id="text">
+            <p>Herzlichen Dank für Ihr Vertrauen in unsere Produkte. Wir erlauben
+            uns folgende Beträge in Rechnung zu stellen und freuen uns, wenn wir
+            auch in Zukunft für Sie tätig werden dürfen.</p>
+
+            <table id="payment">
+                    <tr><td colspan="4"><hr/></td></tr>
+                    <tr>
+                        <th align="left">Beschreibung</th>
+                        <th align="left">Menge</th>
+                        <th align="left">Preis</th>
+                        <th align="left">Netto</th>
+                    </tr>
+                    <tr><td colspan="4"><hr/></td></tr>
+                    <tr>
+                        <td align="left">Portraitfotos</td>
+                        <td align="left">1</td>
+                        <td align="left">€ {{netto}}</td>
+                        <td align="left">€ {{netto}}</td>
+                    </tr>
+                    <tr>
+                        <td align="left"></td>
+                        <td align="left"></td>
+                        <td align="left"></td>
+                        <td align="left"></td>
+                    </tr>
+                    <tr>
+                        <td align="left"></td>
+                        <td align="left"></td>
+                        <td align="left">Summe netto</td>
+                        <td align="left">€ {{netto}}</td>
+                    </tr>
+                    <tr>
+                        <td align="left"></td>
+                        <td align="left"></td>
+                        <td align="left">+{{applied_vat}}% Ust</td>
+                        <td align="left">€ {{vat}}</td>
+                    </tr>
+                    <tr><td colspan="4"><hr/></td></tr>
+                    <tr>
+                        <td align="left"></td>
+                        <td align="left"></td>
+                        <td align="left"><b>Gesamt brutto</b></td>
+                        <td align="left"><b>€ {{lordo}}</b></td>
+                    </tr>
+            </table>
+            <p>Wir hoffen, den Auftrag zu Ihrer Zufriedenheit ausgeführt zu haben
+            und verbleiben</p>
+            <p>mit freundlichen Grüßen</p>
+            <p>Francesco Rao</p>
+
+
+            <table id="footer">
+                <tr>
+                    <td>Francesco Rao, Ferdinandkopfstr. 12, 79117
+                    Freiburg</td>
+                    <td class="footertd">Tel: 0157 544 13 662 Email:
+                    hola@francescorao.net</td>
+                    <td class="footertd">Fidor Bank IBAN: DE63 7002 2200 0072 6360
+                    07</td>
+                </tr>
+            </table>
+        </article>
+
+{% endblock %}
+

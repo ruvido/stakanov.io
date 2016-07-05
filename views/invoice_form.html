@@ -1,0 +1,165 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+
+
+  <div class="row">
+    <div class="col-xs-12">
+    <!-- <div class="col-md-4 col-md-offset-4"> -->
+      <form method="post" action="/test" class="form-horizontal" role="form">
+
+        <fieldset>
+
+          <!-- Form Name -->
+          <legend>New invoice</legend>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Name</label>
+            <div class="col-sm-10">
+              <input type="text" name="name" class="form-control" required>
+            </div>
+          </div>
+
+
+          <!-- Text input-->
+<!--           <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">picker</label> 
+            <div class="col-sm-10">
+              <div class="input-group date" id="datetimepickercaz">
+                <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+              </div>
+            </div>
+          </div>
+ -->
+
+          <!-- Text input-->
+          <div class="form-group">
+          <label class="col-sm-2 control-label" for="textinput">Invoice date</label> 
+            <div class="col-sm-10">
+              <div class="formdatekeeper input-group date" data-provide="datepicker">
+                  <input type="text" name="invoice_date_string" class="form-control" required>
+                  <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-th"></span>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Lordo</label>
+            <div class="col-sm-10">
+              <input type="text" placeholder="Euro" name="lordo" class="form-control" required>
+            </div>
+          </div>
+
+          <hr>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Event</label>
+            <div class="col-sm-10">
+              <input type="text" name="event_name" class="form-control">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Event date</label>
+            <div class="col-sm-10">
+              <input type="text" name="event_date_string" class="form-control">
+            </div>
+          </div>
+
+          <hr>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Street</label>
+            <div class="col-sm-10">
+              <input type="text" name="street" class="form-control">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Postcode</label>
+            <div class="col-sm-10">
+              <input type="text" name="postal_code" class="form-control">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">City</label>
+            <div class="col-sm-10">
+              <input type="text" name="city" class="form-control">
+            </div>
+          </div>
+
+          <!-- Text input-->
+ <!--          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">State</label>
+            <div class="col-sm-4">
+              <input type="text" placeholder="State" class="form-control">
+            </div>
+
+            <label class="col-sm-2 control-label" for="textinput">Postcode</label>
+            <div class="col-sm-4">
+              <input type="text" placeholder="Post Code" class="form-control">
+            </div>
+          </div> -->
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Country</label>
+            <div class="col-sm-10">
+              <input type="text" name="country" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="pull-right">
+                <!-- <button type="submit" class="btn btn-default">Cancel</button> -->
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+    </div><!-- /.col-lg-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+  <hr><br>
+
+  <h2>Invoices</h2>
+
+  <table class="table table-striped">
+  {% for invoice in invoices %}
+    <tr>
+        <td>{{invoice.invoice_id}}  </td> 
+        <td>{{invoice.name}}        </td>
+        <td>{{invoice.invoice_date_string}}        </td> 
+        <td>{{invoice.lordo}}       </td>
+        <td><a href="/test/invoice/{{invoice.id}}">View</a></td>
+        <td><a href="/test/invoice/edit/{{invoice.id}}">Edit</a></td>
+        <td><a href="/test/send/{{invoice.id}}">Send (if not)</a></td>
+        <td>
+        <form method="post" action="/test/{{invoice.id}}?_method=DELETE" class="form-inline">
+          <button type="submit" class="btn btn-default">Delete</button>
+        </form>      
+        </td>
+    </tr>
+  {% endfor %}
+  </table>
+</div>
+
+{% endblock %}

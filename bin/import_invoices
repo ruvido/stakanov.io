@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+database="staka"
+collection="invoices"
+
+if ARGV[0] == nil
+  puts ''
+  puts "\tMissing input: csv file missing"
+  puts ''
+  exit
+else
+  input_csv=ARGV[0]
+end
+
+`mongoimport -d #{database} -c #{collection} --type csv --file #{input_csv} --headerline`

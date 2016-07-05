@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+  <div class="container">
+
+    <h1>{{ title }}</h1>
+
+    <br>
+
+    <form method="post" action="/api/invoices" class="form-inline">
+      <div class="form-group row">
+        <label>Name</label><input type="text" name="name"  class="form-control" required>
+        <label>Lordo</label><input type="text" name="lordo" class="form-control" required>
+      </div>
+      <div class="form-group row">
+        <input type="text" name="lordo" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-default">Save</button>
+    </form>
+
+
+<form>
+  <fieldset class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+    <small class="text-muted">We'll never share your email with anyone else.</small>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </fieldset>
+</form>
+
+    <hr><br>
+
+    <h2>Invoices</h2>
+
+    <table class="table table-striped">
+    {% for invoice in invoices %}
+      <tr>
+          <td>{{invoice.invoice_id}} </td> 
+          <td>{{invoice.date}} </td> 
+          <td>{{invoice.name}} </td>
+          <td>{{invoice.lordo}}</td>
+      </tr>
+    {% endfor %}
+    </table>
+
+  </div>
+
+{% endblock %}

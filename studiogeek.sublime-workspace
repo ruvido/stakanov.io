@@ -1,0 +1,1157 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"invoice",
+				"invoice_date"
+			],
+			[
+				"paddin",
+				"padding-top"
+			],
+			[
+				"in",
+				"invoice_id"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"invoice_file",
+				"invoice_filename_complete_path"
+			],
+			[
+				"invoi",
+				"invoice_filename"
+			],
+			[
+				"inv",
+				"invoice_id"
+			],
+			[
+				"invo",
+				"invoice_id"
+			],
+			[
+				"tr",
+				"true"
+			],
+			[
+				"slot",
+				"slot_basename"
+			],
+			[
+				"C",
+				"CONFIG"
+			],
+			[
+				"tot",
+				"total_number_of_images"
+			],
+			[
+				"ra",
+				"raw_format"
+			],
+			[
+				"s",
+				"super_sync"
+			],
+			[
+				"pro",
+				"progress_bar"
+			],
+			[
+				"no",
+				"no"
+			],
+			[
+				"te",
+				"template_catalog"
+			],
+			[
+				"ti",
+				"title"
+			],
+			[
+				"wedd",
+				"wedding_data"
+			],
+			[
+				"ca",
+				"card_2"
+			],
+			[
+				"card",
+				"card_1"
+			],
+			[
+				"f",
+				"folder"
+			],
+			[
+				"list",
+				"list_of_cards"
+			],
+			[
+				"file",
+				"file_extension"
+			],
+			[
+				"dci",
+				"dcim_list"
+			],
+			[
+				"cli",
+				"cli_data"
+			],
+			[
+				"lr",
+				"lr_stuff"
+			],
+			[
+				"pr",
+				"project_folder"
+			],
+			[
+				"bride",
+				"bride"
+			],
+			[
+				"S",
+				"STORAGE"
+			],
+			[
+				"con",
+				"configd"
+			],
+			[
+				"jso",
+				"json_invoices"
+			],
+			[
+				"new",
+				"new_invoice"
+			],
+			[
+				"ws",
+				"ws_data"
+			],
+			[
+				"goo",
+				"google_drive"
+			],
+			[
+				"G",
+				"GOOGLE_CREDENTIALS"
+			],
+			[
+				"INV",
+				"INVOICE_HTML"
+			],
+			[
+				"EMA",
+				"EMAIL_FROM"
+			],
+			[
+				"EM",
+				"EMAIL_SUBJECT"
+			],
+			[
+				"n",
+				"n"
+			],
+			[
+				"year",
+				"year_path"
+			],
+			[
+				"t",
+				"the"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"inp",
+				"input_date"
+			],
+			[
+				"dat",
+				"data"
+			],
+			[
+				"da",
+				"data"
+			],
+			[
+				"pho",
+				"photographer"
+			],
+			[
+				"wedding",
+				"wedding_complete_path"
+			],
+			[
+				"we",
+				"wedding_id"
+			],
+			[
+				"slugi",
+				"slugified_couple_name"
+			],
+			[
+				"slg",
+				"slg_date"
+			],
+			[
+				"info",
+				"infoyml"
+			],
+			[
+				"data",
+				"datarr"
+			],
+			[
+				"work",
+				"worksheet"
+			],
+			[
+				"ci",
+				"cite	Tag"
+			],
+			[
+				"border-",
+				"border-radius"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"im",
+				"important"
+			],
+			[
+				"pos",
+				"post_image"
+			],
+			[
+				"blog_im",
+				"blog_images"
+			],
+			[
+				"dum",
+				"dump_images"
+			],
+			[
+				"to_s",
+				"to_s"
+			],
+			[
+				"to",
+				"to_s"
+			],
+			[
+				"publ",
+				"publish_field"
+			],
+			[
+				"ma",
+				"markdown_message"
+			],
+			[
+				"send",
+				"sender"
+			],
+			[
+				"the",
+				"the_jekyll_editor"
+			],
+			[
+				"bold",
+				"bold_text"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"gra",
+				"Gray_Background"
+			],
+			[
+				"Gra",
+				"Gray_Background"
+			],
+			[
+				"de",
+				"Description_Text"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"op",
+				"opacity"
+			],
+			[
+				"fon",
+				"font_black"
+			],
+			[
+				"sm",
+				"sm_size"
+			],
+			[
+				"marg",
+				"margin-bottom"
+			],
+			[
+				"fo",
+				"font_black"
+			],
+			[
+				"wh",
+				"white"
+			],
+			[
+				"Te",
+				"Text_padding"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"a",
+				"absolute"
+			],
+			[
+				"Colu",
+				"Column_Size"
+			],
+			[
+				"post",
+				"postAuthor"
+			],
+			[
+				"bl",
+				"font_black"
+			],
+			[
+				"tet",
+				"text-align"
+			],
+			[
+				"h1",
+				"h1_size"
+			],
+			[
+				"h2",
+				"h2_size"
+			],
+			[
+				"pg",
+				"pg_size"
+			],
+			[
+				"h3",
+				"h3_size"
+			],
+			[
+				"h4",
+				"h4_size"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"M",
+				"Main"
+			],
+			[
+				"Hea",
+				"Header_Background"
+			],
+			[
+				"A",
+				"ARGV"
+			],
+			[
+				"git",
+				"gitmessage"
+			],
+			[
+				"un",
+				"untracked"
+			],
+			[
+				"sta",
+				"status"
+			],
+			[
+				"blog",
+				"blog"
+			],
+			[
+				"preview",
+				"preview"
+			],
+			[
+				"dump_",
+				"dump_trash"
+			],
+			[
+				"draft",
+				"draft"
+			],
+			[
+				"dump",
+				"dump_posts"
+			],
+			[
+				"blog_",
+				"blog_posts"
+			],
+			[
+				"drat",
+				"draftname"
+			],
+			[
+				"blo",
+				"blog_posts"
+			],
+			[
+				"_",
+				"_posts"
+			],
+			[
+				"previes",
+				"previews"
+			],
+			[
+				"previews",
+				"previews"
+			],
+			[
+				"dump_p",
+				"dump_previews"
+			],
+			[
+				"config",
+				"configfile"
+			],
+			[
+				"mi",
+				"missing"
+			],
+			[
+				"dra",
+				"draft"
+			],
+			[
+				"pre",
+				"preview"
+			],
+			[
+				"stat",
+				"status"
+			],
+			[
+				"st",
+				"status"
+			],
+			[
+				"statu",
+				"status_v"
+			],
+			[
+				"File",
+				"FileUtils"
+			],
+			[
+				"publish",
+				"publish"
+			],
+			[
+				"cp",
+				"cp_to_preview"
+			],
+			[
+				"prev",
+				"prev_dir"
+			],
+			[
+				"dir",
+				"prev_dir"
+			],
+			[
+				"previ",
+				"preview_field"
+			],
+			[
+				"p",
+				"publish"
+			],
+			[
+				"draf",
+				"draftname"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "bin/test",
+			"settings":
+			{
+				"buffer_size": 308,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "database.js",
+			"settings":
+			{
+				"buffer_size": 2180,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/test.js",
+			"settings":
+			{
+				"buffer_size": 4302,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/invoice_template.html",
+			"settings":
+			{
+				"buffer_size": 3933,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/test.html",
+			"settings":
+			{
+				"buffer_size": 942,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"yam",
+				"Set Syntax: YAML"
+			],
+			[
+				"mark",
+				"Set Syntax: Markdown GFM"
+			],
+			[
+				"html",
+				"Set Syntax: HTML (Liquid)"
+			],
+			[
+				"sass",
+				"Set Syntax: Sass"
+			],
+			[
+				"liquid",
+				"Set Syntax: HTML (Liquid)"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 167.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/ruvido/Dropbox/development/studiogeek",
+		"/Users/ruvido/Dropbox/development/studiogeek/routes",
+		"/Users/ruvido/Dropbox/development/studiogeek/views"
+	],
+	"file_history":
+	[
+		"/Users/ruvido/Dropbox/development/studiogeek/views/invoice_form.html",
+		"/Users/ruvido/Dropbox/development/studiogeek/views/layout.html",
+		"/Users/ruvido/Dropbox/development/studiogeek/views/invoice.html",
+		"/Users/ruvido/Dropbox/development/studiogeek/app.js",
+		"/Users/ruvido/Dropbox/development/studiogeek/routes/api.js",
+		"/Users/ruvido/Dropbox/development/studiogeek/routes/index.js",
+		"/Users/ruvido/Dropbox/development/studiogeek/views/api.html",
+		"/Users/ruvido/Dropbox/development/studiogeek/public/stylesheets/sticky-footer.css",
+		"/Users/ruvido/Dropbox/development/studiogeek/public/stylesheets/style.css",
+		"/Users/ruvido/Dropbox/development/studiogeek/studiogeek.sublime-project",
+		"/Users/ruvido/Dropbox/development/studioj/crud.txt",
+		"/Users/ruvido/Dropbox/Business/Fotograf/Rechnung/caz.html",
+		"/Users/ruvido/Dropbox/development/ruby_studio/data/events_database.yml",
+		"/Users/ruvido/Dropbox/development/ruby_studio/bin/rubystudio",
+		"/Users/ruvido/Dropbox/development/ruby_studio/data/database.yml",
+		"/Users/ruvido/Dropbox/development/rubystudio/lib/rubywed.rb",
+		"/Users/ruvido/Dropbox/development/rubystudio/lib/emailing.rb",
+		"/Users/ruvido/Dropbox/development/ruby_studio/lib/ruby_studio/version.rb",
+		"/Users/ruvido/Dropbox/development/ruby_studio/bin/google_drive",
+		"/Users/ruvido/Dropbox/web/amatiperamare.it/index.html",
+		"/Users/ruvido/Dropbox/development/SuperSync/lib/super_sync/version.rb",
+		"/Users/ruvido/Dropbox/development/SuperSync/lib/super_sync.rb",
+		"/Users/ruvido/Dropbox/development/SuperSync/lib/super_sync/project.rb",
+		"/Users/ruvido/Dropbox/development/super_sync/bin/super_sync",
+		"/Users/ruvido/Dropbox/development/super_sync/lib/super_sync/project.rb",
+		"/Users/ruvido/Dropbox/development/super_sync/lib/super_sync.rb",
+		"/Users/ruvido/Dropbox/development/super_sync/super_sync.gemspec",
+		"/Users/ruvido/Dropbox/development/super_sync/TODO.md",
+		"/Users/ruvido/Dropbox/development/SuperSync/supersync.rb",
+		"/Users/ruvido/Dropbox/development/super_sync/lib/super_sync/utilities.rb",
+		"/Users/ruvido/Dropbox/development/super_sync/lib/super_sync/messages.rb",
+		"/Users/ruvido/Dropbox/development/super_sync/lib/super_sync/version.rb",
+		"/Users/ruvido/Dropbox/development/super_sync/lib/super_sync/constants.rb",
+		"/Users/ruvido/Dropbox/development/super_sync/lib/super_sync copy.rb",
+		"/Users/ruvido/Dropbox/development/super_sync/bin/new",
+		"/Users/ruvido/Dropbox/development/super_sync/lib/super_sync/project",
+		"/Users/ruvido/Dropbox/development/super_sync/lib/super_sync/cards.rb",
+		"/Users/ruvido/Desktop/weddings/super_sync/super_sync.yml",
+		"/Users/ruvido/Desktop/weddings/super_sync.yml",
+		"/Users/ruvido/Dropbox/bin/raf_count",
+		"/Users/ruvido/Dropbox/development/ruby_studio/lib/ruby_studio/google_drive",
+		"/Users/ruvido/Dropbox/development/ruby_studio/Rakefile",
+		"/Users/ruvido/Dropbox/development/ruby_studio/test/url_test.rb",
+		"/Users/ruvido/Dropbox/development/ruby_studio/bin/rubystudio.rb",
+		"/Users/ruvido/Dropbox/development/ruby_studio/bin/test.rb",
+		"/Users/ruvido/Dropbox/development/rubystudio/invoice/google.json",
+		"/Users/ruvido/Dropbox/development/rubystudio/invoice/caz.html",
+		"/Users/ruvido/Dropbox/development/rubystudio/invoice/invoice.md",
+		"/Users/ruvido/Dropbox/Writing drafts/5p2p/drafts/alescanca/Elisabetta Sua Parente.txt",
+		"/Users/ruvido/Dropbox/development/rubystudio/local.yml",
+		"/Users/ruvido/Dropbox/development/testing bundler/caz/caz.gemspec",
+		"/Users/ruvido/Dropbox/development/rubystudio/INFO.md",
+		"/Users/ruvido/Dropbox/bin/wedding-selection",
+		"/Users/ruvido/Dropbox/development/the_jekyll_editor/lib/the_jekyll_editor.rb",
+		"/Users/ruvido/Dropbox/development/rubystudio/lib/google_drive.rb",
+		"/Users/ruvido/Dropbox/development/rubystudio/lib/studio.rb",
+		"/Users/ruvido/Dropbox/development/rubystudio/config.yml",
+		"/Users/ruvido/Dropbox/development/rubystudio/lib/uhm.rb",
+		"/Users/ruvido/Dropbox/bin/slug",
+		"/Users/ruvido/Dropbox/Writing drafts/5p2p/drafts/guest/irene.md",
+		"/Users/ruvido/Dropbox/bin/github_new_repo",
+		"/Users/ruvido/Dropbox/development/rubystudio/google.json",
+		"/Users/ruvido/Dropbox/development/rubywed/config.yml",
+		"/Users/ruvido/Dropbox/development/rubywed/lib/google_drive.rb",
+		"/Users/ruvido/Dropbox/development/rubywed/lib/rubywed.rb",
+		"/Users/ruvido/Dropbox/development/rubywed/templates/config_form.yml",
+		"/Users/ruvido/Dropbox/web/devel/ruby_google_drive/_data/wedding.yml",
+		"/Users/ruvido/Desktop/5p2p/_config.yml",
+		"/Users/ruvido/Desktop/5p2p/_posts/2016-02-22-quando-l-amore-chiama-la-provvidenza-arriva.md",
+		"/Users/ruvido/Desktop/5p2p/_posts/2016-05-05-il-punto-di-vista-che-ti-salva.md",
+		"/Users/ruvido/Desktop/5p2p/_posts/2016-04-20-la-felicita-non-e-gratis.md",
+		"/Users/ruvido/Dropbox/Writing drafts/5p2p/drafts/guest/Lo faccio perché l'hai detto Tu.md",
+		"/Users/ruvido/Dropbox/web/5p2p.es/TODO",
+		"/Users/ruvido/Dropbox/web/5p2p.es/today",
+		"/Users/ruvido/Dropbox/development/rubywed/templates/log/emails/FILE ricevuta.yml",
+		"/Users/ruvido/Dropbox/development/rubywed/templates/pagamenti.yml",
+		"/Users/ruvido/Dropbox/development/rubywed/templates/opzioni.yml",
+		"/Users/ruvido/Dropbox/development/rubywed/templates/info.yml",
+		"/Users/ruvido/Dropbox/development/rubywed/templates/spedizioni.yml",
+		"/Users/ruvido/Dropbox/development/rubywed/lib/automation/log/spedizioni.yml",
+		"/Users/ruvido/Dropbox/development/rubywed/lib/automation/log/emails.yml",
+		"/Users/ruvido/Dropbox/development/rubywed/templates/servizi.md",
+		"/Users/ruvido/Dropbox/development/rubywed/templates/staff",
+		"/Users/ruvido/Dropbox/development/rubywed/templates/info.yaml",
+		"/Users/ruvido/Dropbox/development/rubywed/lib/automation/pagamenti.md",
+		"/Users/ruvido/Dropbox/development/rubywed/lib/automation/servizi.md",
+		"/Users/ruvido/Dropbox/development/rubywed/lib/automation/spedizione.yml",
+		"/Users/ruvido/Dropbox/development/rubywed/lib/automation/staff.yml",
+		"/Users/ruvido/Dropbox/development/rubywed/lib/automation/ricevute.yaml",
+		"/Users/ruvido/Dropbox/development/rubywed/templates/emails/contratto.md",
+		"/Users/ruvido/Dropbox/development/rubywed/templates/ricevute.yaml",
+		"/Users/ruvido/Dropbox/development/rubywed/templates/spedizione.yaml",
+		"/Users/ruvido/Dropbox/web/devel/ruby_google_drive/_config.yml",
+		"/Users/ruvido/Dropbox/web/devel/ruby_google_drive/config.json",
+		"/Users/ruvido/Dropbox/development/rubywed/templates/pagamenti.yaml",
+		"/Users/ruvido/Dropbox/development/rubywed/templates/staff.yaml",
+		"/Users/ruvido/Dropbox/development/rubywed/lib/automation/README.md",
+		"/Users/ruvido/Dropbox/development/rubywed/templates/servizi.yaml",
+		"/Users/ruvido/Dropbox/development/rubywed/templates/prezzi.yaml",
+		"/Users/ruvido/Dropbox/development/rubywed/automation/README.md",
+		"/Users/ruvido/Dropbox/development/the_jekyll_editor/lib/notifications.rb",
+		"/Users/ruvido/Dropbox/Writing drafts/5p2p/drafts/alescanca/la felicità non è gratis.txt",
+		"/Users/ruvido/Dropbox/Writing drafts/5p2p/drafts/alescanca/Elisabetta Sua Parente copy.txt",
+		"/Users/ruvido/Desktop/5p2p/_posts/2016-04-13-come-si-costruisce-un-fidanzamento-forte-e-luminoso.md",
+		"/Users/ruvido/Desktop/5p2p/_posts/2016-04-12-come-si-costruisce-un-fidanzamento-forte-e-luminoso.md",
+		"/Users/ruvido/Desktop/5p2p/_posts/2016-04-12-un-fidanzamento-forte-si-ottiene-con-cristo.md",
+		"/Users/ruvido/Desktop/5p2p/_posts/Intervista in spagnolo copy.md",
+		"/Users/ruvido/Dropbox/web/weddings.5p2p.it/index.html",
+		"/Users/ruvido/Dropbox/web/devel/form_php/page.html",
+		"/Users/ruvido/Dropbox/web/devel/form_php/form.php",
+		"/Users/ruvido/Dropbox/web/weddings.5p2p.it/_layouts/landing.html",
+		"/Users/ruvido/Dropbox/web/weddings.5p2p.it/_data/settings.yml",
+		"/Users/ruvido/Dropbox/web/weddings.5p2p.it/_templates/html5up-big-picture/index.html",
+		"/Users/ruvido/Dropbox/web/weddings.5p2p.it/_templates/html5up-big-picture/README.txt",
+		"/Users/ruvido/Desktop/5p2p/_posts/2016-04-04-lettera-per-donne-in-attesa-dell-amato.md",
+		"/Users/ruvido/Desktop/5p2p/pages/2016-04-04-lettera-per-donne-in-attesa-dell-amato.md",
+		"/Users/ruvido/Desktop/5p2p/pages/2016-04-04-lettera-per-donne-in-cerca-dell-amato.md",
+		"/Users/ruvido/Desktop/5p2p/_posts/2016-04-04-lettera-per-donne-in-cerca-dell-amato.md",
+		"/Users/ruvido/Dropbox/Writing drafts/5p2p/drafts/ruvido/Le Credenziali Per Accedere Ad Una Storia D-amore.md",
+		"/Users/ruvido/Dropbox/Writing drafts/5p2p/drafts/ruvido/Nessuno entri nell-amore che non sia un iniziato.md",
+		"/Users/ruvido/Dropbox/Writing drafts/5p2p/drafts/ruvido.it/Perché No La Convivenza.md",
+		"/Users/ruvido/Dropbox/Writing drafts/5p2p/drafts/alescanca/Tutta Colpa Di Sua Madre.md",
+		"/Users/ruvido/Dropbox/Writing drafts/5p2p/drafts/alescanca/Tutta Colpa Di Sua Madre.txt",
+		"/Users/ruvido/Desktop/puuung.md",
+		"/Users/ruvido/Desktop/Carissima Claudia.md",
+		"/Users/ruvido/Dropbox/Writing drafts/5p2p/drafts/alescanca/Intervista in spagnolo.md",
+		"/Users/ruvido/Dropbox/Writing drafts/Ruvido/Blogs/francescorao.net/La xpro2 al primo matrimonio.md",
+		"/Users/ruvido/Dropbox/Writing drafts/Ruvido/Blogs/francescorao.net/XT1 Un Anno.md"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"invoice_",
+			"lordo",
+			"api",
+			"public",
+			"datetime",
+			"yaml",
+			"number",
+			"glob",
+			"exit",
+			"COU",
+			"dir",
+			"draft",
+			"infoyml",
+			"arg",
+			"slug",
+			"ci sta porta",
+			"mujer",
+			"familia",
+			"html",
+			"http",
+			"5p2p.it",
+			"145",
+			"escribe",
+			"sermig",
+			"baseurl",
+			"button",
+			"small-",
+			"small",
+			"button",
+			"{{site",
+			"{{page",
+			"butto",
+			"posT",
+			"li ",
+			"disc",
+			"yaml",
+			"publi",
+			"francesco",
+			"puts '---",
+			"ustmen",
+			"ikon",
+			"button",
+			"logo",
+			"button",
+			"icon",
+			"menu",
+			"icon",
+			"today",
+			"order",
+			"icon",
+			"order-button-url",
+			"button",
+			"butti",
+			"butto",
+			"menu",
+			"<p",
+			"message",
+			"for",
+			".title",
+			"h2",
+			"icon",
+			"bold",
+			"for",
+			"link",
+			"parall",
+			"opaci",
+			"col",
+			"jpg",
+			"img",
+			"logo",
+			"roboto",
+			"font-wei",
+			"h1",
+			"blac",
+			"teal",
+			"teal-text",
+			"media",
+			"color",
+			"nav ",
+			"navbar",
+			"nav",
+			"to_pre",
+			"preview",
+			"missin",
+			"previ",
+			"###",
+			".post",
+			"slug",
+			"auth",
+			"footer",
+			"menu",
+			"assets",
+			"tag",
+			"caz",
+			"page",
+			"date",
+			"post.date",
+			"timeago",
+			"date",
+			"postfoot",
+			"postfooter",
+			"blockquo",
+			"block",
+			"post",
+			".post p",
+			".post",
+			"posttit",
+			"first",
+			"exten",
+			"font_norm",
+			"extend",
+			"postauth",
+			".titl",
+			"padding",
+			".text",
+			"first",
+			"header",
+			"posthead",
+			"splash",
+			"blockquote",
+			"header_logo",
+			"header_top",
+			"landing",
+			"postauthorima",
+			"title",
+			"tite",
+			"a {",
+			"exten"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"html)",
+			"[](http",
+			"http://5p2p.it",
+			"##",
+			"thispage",
+			"Dir.exist",
+			"&mdash; "
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "bin/test",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 308,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								61,
+								147
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "database.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2180,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								870,
+								870
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 161.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "routes/test.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4302,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1124,
+								1124
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 464.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "views/invoice_template.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3933,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3247,
+								3247
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 238.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "views/test.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 942,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								591,
+								933
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 29.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 384.0
+	},
+	"project": "studiogeek.sublime-project",
+	"replace":
+	{
+		"height": 54.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"~/Desktop/5p2p/_studio/viaggi-clean.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 179.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
