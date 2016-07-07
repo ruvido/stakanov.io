@@ -8,8 +8,10 @@
 <body>
 
     <a href="/test"><button type="submit">Back to Invoice List</button></a>
+    <a href="/test/invoice/edit/{{invoice.id}}"><button type="submit">Edit</button></a>
   
-    <button id="cazbutton">Send email</button>
+    <!-- AJAX -->
+    <!-- <button id="cazbutton">Send email</button> -->
 
    <style>
     /*#invoice {padding: 4rem; max-width: 600px;}*/
@@ -111,10 +113,15 @@
             </table>
         </article>
 
+    <a href="/test/invoice/send/{{invoice.id}}"><button type="submit">Send Invoice</button></a>
+
+
 </body>
 
+<!-- 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript">
+// AJAX call
 $('#cazbutton').click(function() {
       // $.get('http://localhost:3000/caz', function(list) {
       //     $('#response').html(list); // show the list
@@ -122,4 +129,6 @@ $('#cazbutton').click(function() {
     $.get('http://localhost:3000/test/caz');
 });
 </script>    
+ -->
+
 </html>

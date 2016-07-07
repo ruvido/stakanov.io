@@ -2,7 +2,13 @@ var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
 var Invoice = mongoose.model('invoices');
+
+// EXTRA DEPENDENCIES
 var nodemailer = require('nodemailer');
+var pdf = require('html-pdf');
+var swig= require('swig');
+var fs  = require('fs')
+
 
 
 // CUSTOM FUNCTIONS
@@ -12,7 +18,7 @@ var nodemailer = require('nodemailer');
 // -----------------------------------------------------------
 router.get('/', function(req, res) {
   Invoice.find(function(err, invoices){
-    console.log(invoices)    
+    // console.log(invoices)    
     res.render(
       // 'test',
       'invoice_form',
@@ -44,37 +50,96 @@ router.post('/', function(req, res) {
 // -----------------------------------------------------------
 
 
-// router.get('/invoice/email/:id', function(req, res) {
-// router.post('/', function(req, res) {
-router.get('/caz', function(req, res) {
+// var fs = require('fs');
+// var pdf = require('html-pdf');
 
-  var transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: 'ruvido@gmail.com', // Your email id
-        pass: 'amo mia moglie' // Your password
+// CREATE AN INVOICE PDF AND SEND IT VIA EMAIL
+router.get('/invoice/send/:id', function(req, res) {
+  var query = {"_id": req.params.id}
+  Invoice.findOne(query, function(err, invoice){
+
+    invoice.update_all_fields()
+    invoice.save()
+
+    console.log(invoice)
+
+    var invoiceTemplate = 'public/data/invoices/templates/invoice_frao_de.html'
+    var invoicePdf      = 'public/data/invoices/'+invoice.invoice_id+'.pdf'
+    var emailTemplate   = 'public/data/invoices/templates/email_invoice_frao_de.html'
+
+    var html = swig.renderFile(invoiceTemplate, {
+        title : 'Invoice for ' + invoice.name, 
+        invoice : invoice,
+        lordo   : invoice.lordo.toFixed(2),
+        netto   : invoice.netto.toFixed(2),
+        vat     : invoice.vat.toFixed(2),
+        applied_vat: (invoice.applied_vat*100).toFixed(2)
+      })
+
+    var options = { 
+      format: 'A4',
+      "border": {
+        "top":    "10mm",
+        "right":  "20mm",
+        "bottom": "5mm",
+        "left":   "20mm"
+      },
+
+      "header": {"height": "45mm"},
+      "footer": {"height": "28mm"}
+
     }
-  })
-  var text = 'Hello world from \n\n';
-  var mailOptions = {
-    from: 'ruvido@gmail.com', // sender address
-    to: 'ruvidoshop@gmail.com', // list of receivers
-    subject: 'Email Example Baaaaa', // Subject line
-    // subject: req.query.subject,
-    text: text
-  // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
-  };
+   
+    pdf.create(html, options).toFile(invoicePdf, function(err, res) {
+      if (err) return console.log(err)
+      console.log(res)
+    })
 
-  transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        console.log(error);
-        res.json({yo: 'error'});
-    }else{
-        console.log('Message sent: ' + info.response);
-        res.json({yo: info.response});
-    };
+    var transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+          user: 'ruvido@gmail.com', // Your email id
+          pass: 'amo mia moglie' // Your password
+      }
+    })
+
+    fs.readFile(emailTemplate, function (err, htmlText) {
+      if (err) {
+        return console.error(err)
+      }
+
+      console.log(htmlText)
+
+      var mailOptions = {
+        // from: 'info@5p2p.it',
+        from: 'Francesco Rao <hola@francescorao.net>',
+        to: 'ruvido@gmail.com',
+        bcc: 'info@5p2p.it',
+        subject: 'Ricevuta di pagamento | '+invoice.name,
+        html: htmlText,
+        attachments: [{path: invoicePdf}]
+      };
+
+      transporter.sendMail(mailOptions, function(error, info){
+        if(error) {
+          console.log(error);
+          res.json({yo: 'error'});
+        }
+        else {
+          console.log('Message sent: ' + info.response);
+          invoice.sent = true
+          invoice.save()
+          res.redirect('/test');
+        }
+      });
+    });
   });
+  // res.send('oh yeah');
 });
+
+
+
+
 
 
 router.get('/invoice/:id', function(req, res) {
@@ -115,6 +180,8 @@ router.get('/invoice/edit/:id', function(req, res) {
 router.put('/invoice/edit/:id', function(req, res) {
   var query = {"_id": req.params.id};
   var update = {
+    invoice_id : req.body.invoice_id, 
+    name: req.body.name, 
     street : req.body.street, 
     postal_code : req.body.postal_code,
     city : req.body.city,
@@ -132,23 +199,7 @@ router.put('/invoice/edit/:id', function(req, res) {
     );
   });
 
-  // WARNING: Both solutions below can update other fields but give 
-  // an error (without bombing):
-  // Error: Can't set headers after they are sent.
-  // ------------------------------------------------------------------
-
-  // Invoice.findOne(query, function(err, invoice){invoice.save()});
-
-  // Invoice.findOne(query, function(err, invoice){
-  //   invoice.invoice_id = 'CAZ';
-  //   invoice.save(function(err) {
-  //     if (err) throw err;
-  //     console.log('CAAAAZZZZ SAAAVED');
-  //   });
-  // });
-  // ------------------------------------------------------------------
-
-  res.redirect('/test');
+  res.redirect('/test/invoice/'+req.params.id);
 });
 
 // router.put('/superhero/:id', function(req, res) {
