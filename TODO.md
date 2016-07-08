@@ -11,6 +11,10 @@
 - check async functions in sendmailer (especially -> pdf creation)
 - include invoices as an array for each event
 - make invoice template unique between "view" and "send email"
+- Schema for Configurations:
+    + public folder (static files)
+    + root routing folder
+    + static assets (e.g. downloadable invoice files)
 
 ## Frontend
 

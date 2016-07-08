@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-xs-12">
     <!-- <div class="col-md-4 col-md-offset-4"> -->
-      <form method="post" action="/test" class="form-horizontal" role="form">
+      <form method="post" action="/test/invoice/new" class="form-horizontal" role="form">
 
         <fieldset>
 
@@ -134,30 +134,5 @@
       </form>
     </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
-
-<div class="row">
-  <hr><br>
-
-  <h2>Invoices</h2>
-
-  <table class="table table-striped">
-  {% for invoice in invoices %}
-    <tr>
-        <td>{{invoice.invoice_id}}  </td> 
-        <td>{{invoice.name}}        </td>
-        <td>{{invoice.invoice_date_string}}        </td> 
-        <td>{{invoice.lordo}}       </td>
-        <td><a href="/test/invoice/{{invoice.id}}">View</a></td>
-        <td><a href="/test/invoice/edit/{{invoice.id}}">Edit</a></td>
-        <td><a href="/test/send/{{invoice.id}}">Send (if not)</a></td>
-        <td>
-        <form method="post" action="/test/{{invoice.id}}?_method=DELETE" class="form-inline">
-          <button type="submit" class="btn btn-default">Delete</button>
-        </form>      
-        </td>
-    </tr>
-  {% endfor %}
-  </table>
-</div>
 
 {% endblock %}

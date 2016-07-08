@@ -8,6 +8,12 @@ var nodemailer = require('nodemailer');
 var pdf = require('html-pdf');
 var swig= require('swig');
 var fs  = require('fs')
+var path = require('path')
+
+// MUCH NEEDED VARIABLES
+var publicFolder  = 'public'
+var invoiceFolder = 'data/invoices'
+var routeRoot     = '/test'
 
 
 
@@ -27,7 +33,28 @@ router.get('/', function(req, res) {
   });
 });
 
-router.post('/', function(req, res) {
+router.get('/invoice/sent', function(req, res) {
+  Invoice.find(function(err, invoices){
+    // console.log(invoices)    
+    res.render(
+      // 'test',
+      'invoice_sent_list',
+      {title : 'Invoices API', invoices : invoices}
+    );
+  });
+});
+
+router.get('/invoice/new', function(req, res) {
+  // Invoice.find(function(err, invoices){
+    res.render(
+      'invoice_new',
+      {title : 'Invoices API'}
+      // {title : 'Invoices API', invoices : invoices}
+    );
+  // });
+});
+
+router.post('/invoice/new', function(req, res) {
   new Invoice({
     name                : req.body.name,
     lordo               : req.body.lordo,
@@ -49,10 +76,6 @@ router.post('/', function(req, res) {
 // SINGLE INVOICE OPERATIONS
 // -----------------------------------------------------------
 
-
-// var fs = require('fs');
-// var pdf = require('html-pdf');
-
 // CREATE AN INVOICE PDF AND SEND IT VIA EMAIL
 router.get('/invoice/send/:id', function(req, res) {
   var query = {"_id": req.params.id}
@@ -64,9 +87,16 @@ router.get('/invoice/send/:id', function(req, res) {
 
     console.log(invoice)
 
-    var invoiceTemplate = 'public/data/invoices/templates/invoice_frao_de.html'
-    var invoicePdf      = 'public/data/invoices/'+invoice.invoice_id+'.pdf'
-    var emailTemplate   = 'public/data/invoices/templates/email_invoice_frao_de.html'
+    // var invoiceTemplate = 'public/data/invoices/templates/invoice_frao_de.html'
+    // var invoicePdf      = 'public/data/invoices/'+invoice.invoice_id+'.pdf'
+    // var emailTemplate   = 'public/data/invoices/templates/email_invoice_frao_de.html'
+
+    var invoiceTemplate = path.join(publicFolder, invoiceFolder, 'templates/invoice_frao_de.html')
+    var emailTemplate   = path.join(publicFolder, invoiceFolder, 'templates/email_invoice_frao_de.html')
+
+    var invoiceName     = invoice.invoice_id+'.pdf'
+    var invoicePdf      = path.join(publicFolder, invoiceFolder, invoiceName)
+    var invoiceDownload = path.join('/', invoiceFolder, invoiceName)
 
     var html = swig.renderFile(invoiceTemplate, {
         title : 'Invoice for ' + invoice.name, 
@@ -139,10 +169,11 @@ router.get('/invoice/send/:id', function(req, res) {
     });
   });
 //////////
+  invoice.pdf=invoiceDownload
     })
 //////////
 
-  res.redirect('/test');
+  res.redirect('/test/invoice/sent');
 })
 
   // res.send('oh yeah');
@@ -237,6 +268,13 @@ router.delete('/:id', function(req, res) {
   });
 });
 
+router.get('/invoice/delete/:id', function(req, res) {
+  var query = {"_id": req.params.id};
+  Invoice.findOneAndRemove(query, function(err, invoice){
+    console.log(invoice)
+    res.redirect('/test');
+  });
+});
 
 
 
