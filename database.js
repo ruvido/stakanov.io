@@ -34,6 +34,7 @@ var create_invoice_id = function(invoice) {
 // -----------------------------------------------------------
 var Invoice = new Schema({
     sent: { type: Boolean, default: false },
+    sent_error: { type: Boolean, default: false },
     invoice_id: String,
     name: String,
     // invoice_date: Date,

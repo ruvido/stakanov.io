@@ -59,6 +59,7 @@ router.get('/invoice/send/:id', function(req, res) {
   Invoice.findOne(query, function(err, invoice){
 
     invoice.update_all_fields()
+    invoice.sent = true
     invoice.save()
 
     console.log(invoice)
@@ -93,7 +94,8 @@ router.get('/invoice/send/:id', function(req, res) {
     pdf.create(html, options).toFile(invoicePdf, function(err, res) {
       if (err) return console.log(err)
       console.log(res)
-    })
+    // })
+    
 
     var transporter = nodemailer.createTransport({
       service: 'Gmail',
@@ -123,19 +125,28 @@ router.get('/invoice/send/:id', function(req, res) {
       transporter.sendMail(mailOptions, function(error, info){
         if(error) {
           console.log(error);
-          res.json({yo: 'error'});
+          invoice.sent_error = true
+          invoice.save()
+          // res.json({yo: 'error'});
         }
         else {
           console.log('Message sent: ' + info.response);
-          invoice.sent = true
-          invoice.save()
-          res.redirect('/test');
+          // invoice.sent = true
+          // invoice.save()
+          // res.redirect('/test');
         }
       });
     });
   });
+//////////
+    })
+//////////
+
+  res.redirect('/test');
+})
+
   // res.send('oh yeah');
-});
+// });
 
 
 
