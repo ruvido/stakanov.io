@@ -21,7 +21,7 @@ router.get('/', function(req, res) {
     // console.log(invoices)    
     res.render(
       // 'test',
-      'invoice_form',
+      'invoice_list',
       {title : 'Invoices API', invoices : invoices}
     );
   });
@@ -163,7 +163,7 @@ router.get('/invoice/:id', function(req, res) {
     console.log(invoice)
 
     res.render(
-      'view_invoice',{
+      'invoice_view',{
         title : 'Invoice for ' + invoice.name, 
         invoice : invoice,
         lordo   : invoice.lordo.toFixed(2),
