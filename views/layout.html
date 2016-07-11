@@ -4,47 +4,44 @@
     <meta charset="utf-8">
     <title>{{ title }}</title>
     
-    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/stylesheets/sticky-footer.css">
-<!-- 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker3.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
- -->
+    <!-- CSS Reset -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css"> -->
+    <link rel="stylesheet" href="/stylesheets/normalize.css">
+
+    <!-- Milligram CSS minified -->
+    <link rel="stylesheet" href="/stylesheets/milligram.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/sticky-footer.css">
+
   </head>
   <body>
-<!-- 
-    <div class="device-xs visible-xs">XS</div>
-    <div class="device-sm visible-sm">SM</div>
-    <div class="device-md visible-md">MD</div>
-    <div class="device-lg visible-lg">LG</div>
- -->
+
+    {% block header %}
+    <header>
+      <div class="container">
+        <p>Stakanov.io</p>
+      </div>
+    </header>
+    {% endblock %}
+
     <div class="container">
     {% block content %}
     {% endblock %}
     </div>
 
+    {% block footer %}
     <footer class="footer">
       <div class="container">
-        <p class="text-muted">Crafted with love by 5pani2pesci.</p>
+        <p>Crafted with love by 5pani2pesci.</p>
       </div>
     </footer>
+    {% endblock %}
 
-<!-- 
-    <script type="text/javascript" src="/js/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
 
-    <script type="text/javascript">
-      $('.formdatekeeper').datepicker({
-        format: "dd/mm/yyyy",
-        // calendarWeeks: true,
-        autoclose: true
-      });
-    </script>
-
- -->  
  </body>
 </html>

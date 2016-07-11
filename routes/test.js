@@ -94,7 +94,7 @@ router.get('/invoice/send/:id', function(req, res) {
     var invoiceTemplate = path.join(publicFolder, invoiceFolder, 'templates/invoice_frao_de.html')
     var emailTemplate   = path.join(publicFolder, invoiceFolder, 'templates/email_invoice_frao_de.html')
 
-    var invoiceName     = invoice.invoice_id+'.pdf'
+    var invoiceName     = path.join('pdf', invoice.invoice_id+'.pdf')
     var invoicePdf      = path.join(publicFolder, invoiceFolder, invoiceName)
     var invoiceDownload = path.join('/', invoiceFolder, invoiceName)
 
