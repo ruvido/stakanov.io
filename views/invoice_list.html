@@ -2,36 +2,46 @@
 
 
 {% block content %}
+<div class="container">
 
-<h1>Invoices</h1>
-<!-- 
-<div class="row">
 
-  <div>
- -->    
-<p><a href="/test/invoice/new">New Invoice</a></p>
-<p><a href="/test/invoice/sent">Sent Invoices</a></p>
+  <div class="row">
+    <div class="column">
+      <h1>Invoices</h1>
+      <p><a href="/test/invoice/new">New Invoice</a></p>
+      <p><a href="/test/invoice/sent">Sent Invoices</a></p>
+    </div>
+  </div>
 
-<table class="table table-striped">
-{% for invoice in invoices %}
-{% if !invoice.sent %}
-  <tr>
-      <td>{{invoice.sent}}       </td>
-      <td><div style="width:3rem"></div></td>
-      <td>{{invoice.invoice_id}}  </td> 
-      <td>{{invoice.name}}        </td>
-      <td>{{invoice.invoice_date_string}}        </td> 
-      <td>{{invoice.lordo}}       </td>
-      <td><a href="/test/invoice/{{invoice.id}}">View</a></td>
-      {% if invoice.pdf == '' %}
-      <td>PDF not ready</td>
-      {% else %}
-      <td>PDF stuff</td>
-      {% endif %}
 
-  </tr>
-{% endif %}
-{% endfor %}
-</table>
+  <div class="row tdrow">
+  </div>
+  {% for invoice in invoices %}
+  {% if !invoice.sent %}
+  <div class="row tdrow">
+    <!-- <div class="column"></div>  -->
+    <div class="column">{{invoice.invoice_date_string}}</div> 
+    <!-- <div class="column column-20">{{invoice.invoice_id}}  </div>  -->
+    <div class="column">{{invoice.name}}        </div>
+    <div class="column">{{invoice.lordo}}       </div>
+    <div class="column small-text">{{invoice.email}}        </div>
+    <div class="column">
+      <a href="/test/invoice/{{invoice.id}}">View</a>
+      ::
+      <a href="/test/invoice/edit/{{invoice.id}}">Edit</a>
+    </div>
+<!--         
+        {% if invoice.pdf == '' %}
+        <div class="column">PDF not ready</div>
+        {% else %}
+        <div class="column">PDF stuff</div>
+        {% endif %} 
+-->  
+  </div>
+  {% endif %}
+  {% endfor %}
 
+
+
+</div>
 {% endblock %}

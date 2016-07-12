@@ -24,7 +24,7 @@ var routeRoot     = '/test'
 // -----------------------------------------------------------
 router.get('/', function(req, res) {
   Invoice.find(function(err, invoices){
-    // console.log(invoices)    
+    console.log(invoices)    
     res.render(
       // 'test',
       'invoice_list',
@@ -143,12 +143,11 @@ router.get('/invoice/send/:id', function(req, res) {
       console.log(htmlText)
 
       var mailOptions = {
-        // from: 'info@5p2p.it',
-        from: 'Francesco Rao <hola@francescorao.net>',
-        to: 'ruvido@gmail.com',
-        bcc: 'info@5p2p.it',
-        subject: 'Ricevuta di pagamento | '+invoice.name,
-        html: htmlText,
+        from:   'Francesco Rao <hola@francescorao.net>',
+        to:     invoice.email,
+        bcc:    'fatture@5p2p.it',
+        subject:'Ricevuta di pagamento | '+invoice.name,
+        html:   htmlText,
         attachments: [{path: invoicePdf}]
       };
 
@@ -222,8 +221,9 @@ router.get('/invoice/edit/:id', function(req, res) {
 router.put('/invoice/edit/:id', function(req, res) {
   var query = {"_id": req.params.id};
   var update = {
-    invoice_id : req.body.invoice_id, 
+    invoice_id: req.body.invoice_id, 
     name: req.body.name, 
+    email: req.body.email, 
     street : req.body.street, 
     postal_code : req.body.postal_code,
     city : req.body.city,
@@ -233,12 +233,12 @@ router.put('/invoice/edit/:id', function(req, res) {
   // Invoice.findOne(query, function(err, invoice){
   Invoice.findOneAndUpdate(query, update, options, function(err, invoice){
     console.log(invoice)
-    res.render(
-      'invoice_edit',{
-        title : 'Invoice for ' + invoice.name, 
-        invoice : invoice
-      }
-    );
+    // res.render(
+    //   'invoice_edit',{
+    //     title : 'Invoice for ' + invoice.name, 
+    //     invoice : invoice
+    //   }
+    // );
   });
 
   res.redirect('/test/invoice/'+req.params.id);

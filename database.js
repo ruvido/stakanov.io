@@ -16,11 +16,12 @@ var create_invoice_id = function(invoice) {
 
   invoice_date = itStringtoDate(invoice.invoice_date_string)
 
+
   // if (!invoice.invoice_id) {
   id_string = moment(invoice_date).format('YYYYMMDD')+'-';
   var narr=invoice.name.split(" ")
   for ( ii in narr )
-    id_string += narr[ii].substring(0,2)
+    id_string += narr[ii].substring(0,1)
   id_string += '-'+invoice.lordo
   // }
   // else {
@@ -39,11 +40,11 @@ var Invoice = new Schema({
     invoice_id: String,
     name: String,
     // invoice_date: Date,
-    invoice_date_string: String,
+    invoice_date_string: { type: String, default: '00/00/0000'},
     // event_date: Date,
     event_name: String, 
-    event_date_string: String,
-    lordo: Number,
+    event_date_string: { type: String, default: '00/00/0000'},
+    lordo: { type: Number, default: 0 },
     netto: Number,
     vat: Number,
     applied_vat: Number,
