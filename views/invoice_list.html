@@ -9,10 +9,20 @@
     <div class="column">
       <h1>Invoices</h1>
       <p><a href="/test/invoice/new">New Invoice</a></p>
+      <p><a href="/test/invoice/import">Import Invoices from file</a></p>
       <p><a href="/test/invoice/sent">Sent Invoices</a></p>
+
+      <form id       =  "uploadForm"
+           enctype   =  "multipart/form-data"
+           action    =  "/api/photo"
+           method    =  "post"
+      >
+      <input type="file" name="userPhoto" />
+      <input type="submit" value="Import Invoices" name="submit">
+      </form>
+
     </div>
   </div>
-
 
   <div class="row tdrow">
   </div>
@@ -26,7 +36,7 @@
     <div class="column">{{invoice.lordo}}       </div>
     <div class="column small-text">{{invoice.email}}        </div>
     <div class="column">
-      <a href="/test/invoice/{{invoice.id}}">View</a>
+      <a href="/test/invoice/view/{{invoice.id}}">View</a>
       ::
       <a href="/test/invoice/edit/{{invoice.id}}">Edit</a>
     </div>

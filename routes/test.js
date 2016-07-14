@@ -9,6 +9,11 @@ var pdf = require('html-pdf');
 var swig= require('swig');
 var fs  = require('fs')
 var path = require('path')
+var parse = require('csv-parse');
+var multer = require('multer');
+
+
+
 
 // MUCH NEEDED VARIABLES
 var publicFolder  = 'public'
@@ -19,6 +24,11 @@ var routeRoot     = '/test'
 
 // CUSTOM FUNCTIONS
 // -----------------------------------------------------------
+
+
+
+
+
 
 // INDEX OPERATIONS
 // -----------------------------------------------------------
@@ -57,6 +67,7 @@ router.get('/invoice/new', function(req, res) {
 router.post('/invoice/new', function(req, res) {
   new Invoice({
     name                : req.body.name,
+    email               : req.body.email,
     lordo               : req.body.lordo,
     invoice_date_string : req.body.invoice_date_string,
     event_name          : req.body.event_name,
@@ -175,20 +186,12 @@ router.get('/invoice/send/:id', function(req, res) {
   res.redirect('/test/invoice/sent');
 })
 
-  // res.send('oh yeah');
-// });
-
-
-
-
-
-
-router.get('/invoice/:id', function(req, res) {
-  var query = {"_id": req.params.id};
+router.get('/invoice/view/:id', function(req, res) {
+  var query = {"_id": req.params.id}
   Invoice.findOne(query, function(err, invoice){
 
-    invoice.update_all_fields();
-    invoice.save();
+    invoice.update_all_fields()
+    invoice.save()
 
     console.log(invoice)
 
@@ -201,9 +204,9 @@ router.get('/invoice/:id', function(req, res) {
         vat     : invoice.vat.toFixed(2),
         applied_vat: (invoice.applied_vat*100).toFixed(2)
       }
-    );
-  });
-});
+    )
+  })
+})
 
 router.get('/invoice/edit/:id', function(req, res) {
   var query = {"_id": req.params.id};
@@ -240,25 +243,9 @@ router.put('/invoice/edit/:id', function(req, res) {
     //   }
     // );
   });
-
-  res.redirect('/test/invoice/'+req.params.id);
+  // res.redirect('/test/invoice/view/'+req.params.id);
+  res.redirect('/test');
 });
-
-// router.put('/superhero/:id', function(req, res) {
-//   var query = {"_id": req.params.id};
-//   var update = {name : req.body.name, cool : req.body.cool };
-//   var options = {new: true};
-//   // Superhero.findOneAndUpdate(query, update, options, function(err, superhero){
-//   Superhero.findOneAndUpdate(query, update, options, function(err, superhero){
-//     console.log(superhero)
-//     res.render(
-//       'superhero',
-//       {title : 'Superhero API - ' + superhero.name, superhero : superhero}
-//     );
-//   });
-//   res.redirect('/api/superheros');
-// });
-
 
 router.delete('/:id', function(req, res) {
   var query = {"_id": req.params.id};
@@ -277,8 +264,95 @@ router.get('/invoice/delete/:id', function(req, res) {
 });
 
 
+// IMPORT DATA
+// -----------------------------------------------------------
+
+// var storage =   multer.diskStorage({
+//   destination: function (req, file, callback) {
+//     callback(null, './uploads');
+//   },
+//   filename: function (req, file, callback) {
+//     callback(null, file.fieldname + '-' + Date.now());
+//   }
+// });
+// var upload = multer({ storage : storage}).single('userPhoto');
+
+
+
+router.get('/invoice/import', function(req, res) {
+
+
+  // Invoice.remove({}, function(err) {
+  //   if (err) {
+  //     return console.log(err)
+  //   }
+  // })
+
+
+  // inputFile='Fidorpay-Transaktionen.csv'
+  inputFile=path.join( __dirname, '../test','Fidorpay-Transaktionen.csv')
+
+  fs.readFile(inputFile, 'utf8', function (err,data) {
+    if (err) {
+      return console.log(err);
+    }
+    // console.log(data);
+
+    // parse(data, {comment: '#', delimiter: ':'}, function(err, output){
+    parse(data, {comment: '#', delimiter: ';'}, function(err, output){
+      // console.log(output)
+
+      var firstRow=1 // skip header
+      for (var ii=firstRow; ii < output.length; ii++){
+
+        var date = output[ii][0].replace(/\./g, '/')
+        var name = output[ii][1]
+        var lordo= parseFloat(output[ii][3].replace(/\./g, '').replace(/\,/g, '.'))
+
+        // for (var jj=0; jj < output[ii].length; jj++){
+        //   console.log(output[ii][jj])
+        // }
+
+        if ( lordo > 0 ) {
+
+          var import_unique_id=date+name+lordo
+
+          new Invoice({
+            name                : name,
+            lordo               : lordo,
+            invoice_date_string : date,
+            import_unique_id    : import_unique_id
+          })
+          .save(function(err, invoice) {
+            if (err) {
+              return console.log(err);
+            }
+            // console.log(invoice)
+          });
+
+          console.log('---'+ii+'-------------')
+          console.log('date: '+ date)
+          console.log('name: '+ name)
+          console.log('lordo: '+ lordo)
+          console.log('import_unique_id: '+ import_unique_id)
+        }
+      }
+    })
+  })
+
+res.redirect('/test')
+
+})
+
+
 
 // -----------------------------------------------------------
 // -----------------------------------------------------------
 module.exports = router;
 
+
+  // Invoice.remove({}, function(err) {
+  //   if (err) {
+  //     return console.log(err)
+  //   }
+  // })

@@ -1,9 +1,7 @@
 var mongoose = require('mongoose');
+var uniqueValidator = require('mongoose-unique-validator');
 var Schema = mongoose.Schema;
 var moment = require('moment');
-// var tools  = require('./lib/tools.js')
-// var autoIncrement = require('mongoose-auto-increment');
-// var ObjectId = Schema.ObjectId;
 
 // CUSTOM FUNCTIONS
 // -----------------------------------------------------------
@@ -39,6 +37,7 @@ var Invoice = new Schema({
     pdf: String,
     invoice_id: String,
     name: String,
+    import_unique_id: { type: String, unique: true },
     // invoice_date: Date,
     invoice_date_string: { type: String, default: '00/00/0000'},
     // event_date: Date,
@@ -55,6 +54,9 @@ var Invoice = new Schema({
     email : String
 });
 
+Invoice.plugin(uniqueValidator);
+
+
 var Event = new Schema({
     name    : String,
     date    : String,
@@ -65,19 +67,9 @@ var Event = new Schema({
 
 // on every save
 // Invoice.pre('save', function(next) {
-
-//   if (!this.netto) {
-//     this.applied_vat=0.19;
-//     this.netto = this.lordo/(1+this.applied_vat);
-//     this.vat   = this.netto*this.applied_vat;
-//   }
-
-//   if (!this.invoice_id) {
-//     this.invoice_id = create_invoice_id(this)
-//   }
-
-//   next();
-// });
+//   this.import_unique_id=this.date+this.name+this.lordo
+//   next()
+// })
 
 Invoice.methods.update_all_fields = function() {
 
