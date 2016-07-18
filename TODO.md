@@ -2,14 +2,12 @@
 
 ## Urgent
 
-- send invoices (IMPORTANT: re-import all data "no-dude")
-- line 116 of test --> actual email recipients (name <email>)
+- BACKUP mongolab database (cron stuff, ok to do it on pumaPRO)
 
 - send donation receipts
 
 ## Backend
 
-- [done] check async functions in sendmailer (especially -> pdf creation)
 - include invoices as an array for each event
 - make invoice template unique between "view" and "send email"
 - Mongoose Schema for Configurations:
