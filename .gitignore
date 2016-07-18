@@ -1,3 +1,4 @@
+tmp/*
 test/
 *.sublime-project
 *.sublime-workspace
