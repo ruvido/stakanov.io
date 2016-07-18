@@ -17,7 +17,8 @@ var multer = require('multer');
 
 // MUCH NEEDED VARIABLES
 var publicFolder  = 'public'
-var invoiceFolder = 'data/invoices'
+var invoiceFolder = 'data/invoices' // public access
+var uploadsFolder = 'data/uploads' // private access
 var routeRoot     = '/test'
 
 
@@ -280,71 +281,74 @@ router.get('/invoice/delete/:id', function(req, res) {
 
 
 router.get('/invoice/import', function(req, res) {
-
-
-  // Invoice.remove({}, function(err) {
-  //   if (err) {
-  //     return console.log(err)
-  //   }
-  // })
-
-
-  // inputFile='Fidorpay-Transaktionen.csv'
-  inputFile=path.join( __dirname, '../test','Fidorpay-Transaktionen.csv')
-
-  fs.readFile(inputFile, 'utf8', function (err,data) {
-    if (err) {
-      return console.log(err);
-    }
-    // console.log(data);
-
-    // parse(data, {comment: '#', delimiter: ':'}, function(err, output){
-    parse(data, {comment: '#', delimiter: ';'}, function(err, output){
-      // console.log(output)
-
-      var firstRow=1 // skip header
-      for (var ii=firstRow; ii < output.length; ii++){
-
-        var date = output[ii][0].replace(/\./g, '/')
-        var name = output[ii][1]
-        var lordo= parseFloat(output[ii][3].replace(/\./g, '').replace(/\,/g, '.'))
-
-        // for (var jj=0; jj < output[ii].length; jj++){
-        //   console.log(output[ii][jj])
-        // }
-
-        if ( lordo > 0 ) {
-
-          var import_unique_id=date+name+lordo
-
-          new Invoice({
-            name                : name,
-            lordo               : lordo,
-            invoice_date_string : date,
-            import_unique_id    : import_unique_id
-          })
-          .save(function(err, invoice) {
-            if (err) {
-              return console.log(err);
-            }
-            // console.log(invoice)
-          });
-
-          console.log('---'+ii+'-------------')
-          console.log('date: '+ date)
-          console.log('name: '+ name)
-          console.log('lordo: '+ lordo)
-          console.log('import_unique_id: '+ import_unique_id)
-        }
-      }
-    })
-  })
-
-res.redirect('/test')
-
+  res.render(
+    'invoice_import',
+    {title : 'Invoices API'}
+  )
 })
 
+router.post('/invoice/import', function(req, res) {
+// router.post('/caz',function(req,res){
 
+  var storage =   multer.diskStorage({
+    destination: function (req, file, callback) {
+      callback(null, './tmp')
+    }
+  })
+  var upload = multer({ storage : storage}).single('upload');
+
+  upload(req,res,function(err) {
+    if(err) {
+      console.log(error)
+    }
+
+    console.log('file:', req.file)
+
+    var inputFile = req.file.path
+    fs.readFile(inputFile, 'utf8', function (err,data) {
+      if (err) {
+        return console.log(err);
+      }
+
+      parse(data, {comment: '#', delimiter: ';'}, function(err, output){
+        var firstRow=1 // skip header
+        for (var ii=firstRow; ii < output.length; ii++){
+
+          var date = output[ii][0].replace(/\./g, '/')
+          var name = output[ii][1]
+          var lordo= parseFloat(output[ii][3].replace(/\./g, '').replace(/\,/g, '.'))
+
+          if ( lordo > 0 ) {
+
+            var import_unique_id=date+name+lordo
+
+            new Invoice({
+              name                : name,
+              lordo               : lordo,
+              invoice_date_string : date,
+              import_unique_id    : import_unique_id
+            })
+            .save(function(err, invoice) {
+              if (err) {
+                return console.log(err);
+              }
+            });
+
+            console.log('---'+ii+'-------------')
+            console.log('date: '+ date)
+            console.log('name: '+ name)
+            console.log('lordo: '+ lordo)
+            console.log('import_unique_id: '+ import_unique_id)
+          }
+        }
+      })
+    })
+  })
+  /////////////////////
+
+  res.redirect('/test')
+
+})
 
 // -----------------------------------------------------------
 // -----------------------------------------------------------
