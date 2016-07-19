@@ -1,0 +1,40 @@
+{% extends '../layout.html' %}
+
+
+{% block content %}
+<div class="container">
+
+
+  <div class="row">
+    <div class="column">
+      <h1>{{title}}</h1>
+      <p><a href="{{root}}/new">New</a></p>
+      <p><a href="{{root}}/sent">Sent</a></p>
+      <p><a href="{{root}}/import">Import from file</a></p>
+    </div>
+  </div>
+
+
+
+  <div class="row tdrow">
+  </div>
+  {% for element in elements %}
+  {% if !element.sent %}
+  <div class="row tdrow">
+    <div class="column">{{element.date_string}}</div> 
+    <div class="column">{{element.name}}        </div>
+    <div class="column">{{element.amount}}       </div>
+    <div class="column small-text">{{element.email}}        </div>
+    <div class="column">
+      <a href="{{root}}/view/{{element.id}}">View</a>
+      ::
+      <a href="{{root}}/edit/{{element.id}}">Edit</a>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+
+
+
+</div>
+{% endblock %}

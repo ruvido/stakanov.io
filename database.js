@@ -3,6 +3,9 @@ var uniqueValidator = require('mongoose-unique-validator');
 var Schema = mongoose.Schema;
 var moment = require('moment');
 
+require('./models/team-schema');
+
+
 // CUSTOM FUNCTIONS
 // -----------------------------------------------------------
 function itStringtoDate(dateStr) {
@@ -52,9 +55,63 @@ var Invoice = new Schema({
     city  : String,
     country: String,
     email : String
-});
+})
 
-Invoice.plugin(uniqueValidator);
+// var Donation = new Schema({
+//   name: String
+// })
+
+var Payment = new Schema({
+// general
+  transaction_type: String, // donation or regular
+  unique_id: { type: String, unique: true },
+  import_unique_id: { type: String, unique: true },
+// details
+  name: String,
+  amount: { type: Number, default: 0 },
+  date_string: { type: String, default: '00/00/0000'},
+  amount_letters: String,
+  amount_letters_it: String,
+// address
+  street: String,
+  postal_code: String,
+  city  : String,
+  country: String,
+  email : String,
+// associated event
+  event_name: String, 
+  event_date_string: { type: String, default: '00/00/0000'},
+// pdf related stuff  
+  sent: { type: Boolean, default: false },
+  sent_error: { type: Boolean, default: false },
+  pdf: String
+})
+
+// var Payment = new Schema({  ---> see type
+// var Donation = new Schema({
+//   transaction_type: { type: String, default: 'donation'}, // this can help to unify donations and regular payments
+// // name
+//     name: String,
+//     lordo: { type: Number, default: 0 },
+//     date_string: { type: String, default: '00/00/0000'},
+//     unique_id: { type: String, unique: true },
+//     import_unique_id: { type: String, unique: true },
+//     amount_letters: String,
+//     amount_letters_it: String,
+// // address
+//     street: String,
+//     postal_code: String,
+//     city  : String,
+//     country: String,
+//     email : String,
+// // associated event
+//     event_name: String, 
+//     event_date_string: { type: String, default: '00/00/0000'},
+// // pdf related stuff  
+//     sent: { type: Boolean, default: false },
+//     sent_error: { type: Boolean, default: false },
+//     pdf: String
+// })
 
 
 var Event = new Schema({
@@ -64,6 +121,15 @@ var Event = new Schema({
     invoices: [Invoice]
   });
 
+
+
+// --PLUGINS------------------------
+Invoice.plugin(uniqueValidator);
+Payment.plugin(uniqueValidator);
+// Donation.plugin(uniqueValidator);
+
+
+// --METHODS------------------------
 
 // on every save
 // Invoice.pre('save', function(next) {
@@ -92,13 +158,19 @@ Invoice.methods.dudify = function() {
   return this;
 };
 
-mongoose.model('invoices', Invoice);
-mongoose.model('events', Event);
+// --MODELS------------------------
 
+mongoose.model('invoices', Invoice)
+// mongoose.model('donations', Donation)
+mongoose.model('payments', Payment)
+mongoose.model('events', Event)
+
+// --CONNECTION--------------------
 // mongoose.connect('mongodb://localhost/staka');
-// mongoose.connect('mongodb://localhost/staka-test');
+mongoose.connect('mongodb://localhost/staka-test');
 
-mongoose.connect('mongodb://ruvido:solemio77@ds023425.mlab.com:23425/studio-production')
+// mongoose.connect('mongodb://ruvido:solemio77@ds023425.mlab.com:23425/studio-production')
+//-----------------------------------------
 // mongoose.connect('mongodb://ruvido:solemio77@ds021333.mlab.com:21333/superheros');
 // mongoose.connect('mongodb://ruvido:solemio77@ds021333.mlab.com:21333/ruvido-test');
 // mongoose.connect('mongodb://ruvido:solemio77@ds023644.mlab.com:23644/studiogeek');

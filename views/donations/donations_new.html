@@ -1,0 +1,56 @@
+{% extends '../layout.html' %}
+
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    <div class="column">
+      <h1>New</h1>
+      <p><a href="{{page.root}}">Back to list</a></p>
+    </div>
+  </div>
+
+
+
+<form method="post" action="{{page.root}}/new">
+  <fieldset>
+
+    <label for="nameField">Name</label>
+    <input type="text" name="name" id="nameField">
+
+    <label for="nameField">Email</label>
+    <input type="text" name="email" placeholder="name@mail.it" id="nameField">
+
+    <label for="nameField">Donation date</label>
+    <input type="text" name="date_string" placeholder="dd/mm/yyyy" id="nameField">
+
+    <label for="nameField">Amount</label>
+    <input type="text" name="amount" placeholder="Euro" id="nameField">
+
+    <label for="nameField">Amount in letters (German)</label>
+    <input type="text" name="amount_letters" id="nameField">
+
+    <label for="nameField">Amount in letters (Italian)</label>
+    <input type="text" name="amount_letter_it" id="nameField">
+
+    <label for="nameField">Street</label>
+    <input type="text" name="street" id="nameField">
+
+    <label for="nameField">Postal code</label>
+    <input type="text" name="postal_code" id="nameField">
+
+    <label for="nameField">City</label>
+    <input type="text" name="city" id="nameField">
+
+    <label for="nameField">Country</label>
+    <input type="text" name="country" id="nameField">
+
+    <input class="button-primary" type="submit" value="Create">
+
+  </fieldset>
+</form>
+
+
+
+</div>
+{% endblock %}

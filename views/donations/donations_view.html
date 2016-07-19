@@ -1,0 +1,12 @@
+{% extends 'donations_template.html' %}
+
+{% block nav %}
+    <a href="{{page.root}}"><button type="submit">Back to List</button></a>
+    <a href="{{page.root}}/edit/{{element.id}}"><button type="submit">Edit</button></a>
+{% endblock %}
+  
+{% block footer %}
+    <div style="margin-top:4rem"></div>
+    <a href="{{page.root}}/send/{{invoice.id}}"><button type="submit">Send Email</button></a>
+    <a href="{{page.root}}/delete/{{invoice.id}}"><button type="submit">Delete</button></a>
+{% endblock %}

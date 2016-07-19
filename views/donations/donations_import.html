@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+<div class="container">
+
+
+  <div class="row">
+    <div class="column">
+      <h1>Invoices</h1>
+      <p><a href="/test">Back to Invoices</a></p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="column">
+      <form id       =  "uploadForm"
+           enctype   =  "multipart/form-data"
+           action    =  "/test/invoice/import"
+           method    =  "post"
+      >
+      <input type="file" name="upload" />
+      <input type="submit" value="Import File" name="submit">
+      </form>
+    </div>
+  </div>
+
+
+</div>
+
+{% endblock %}

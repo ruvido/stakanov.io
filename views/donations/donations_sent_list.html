@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+<div class="container">
+
+
+  <div class="row">
+    <div class="column">
+      <h1>Sent Invoices</h1>
+      <p><a href="/test">Back to invoices</a></p>
+    </div>
+  </div>
+
+
+  <div class="row tdrow">
+  </div>
+  {% for invoice in invoices %}
+  {% if invoice.sent %}
+  <div class="row tdrow">
+    <div class="column">{{invoice.invoice_id}}  </div> 
+    <div class="column">{{invoice.invoice_date_string}}</div> 
+    <div class="column">{{invoice.name}}        </div>
+    <div class="column">{{invoice.lordo}}       </div>
+
+<!--     <div class="column"><a href="/test/invoice/{{invoice.id}}">View</a></div>
+    {% if invoice.pdf != '' %}
+    <div class="column"><a href="{{invoice.pdf}}">Download</a></div>
+    {% else %}
+    <div class="column">/</div>
+    {% endif %}
+ -->
+    <div class="column"><a href="/test/invoice/view/{{invoice.id}}">View</a>
+    {% if invoice.pdf != '' %} 
+     | <a href="{{invoice.pdf}}">Download</a>
+    {% endif %}
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+
+
+
+</div>
+{% endblock %}

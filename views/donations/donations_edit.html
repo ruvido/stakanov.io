@@ -1,0 +1,60 @@
+{% extends '../layout.html' %}
+
+
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    <div class="column">
+      <h1>Edit</h1>
+      <p><a href="{{page.root}}">Back</a></p>
+    </div>
+  </div>
+
+
+<form method="post" action="{{page.root}}/edit/{{element.id}}?_method=PUT">
+  <fieldset>
+
+    <label for="nameField">ID</label>
+    <input type="text" name="unique_id" value="{{element.unique_id}}" id="nameField">
+
+    <label for="nameField">Name</label>
+    <input type="text" name="name" value="{{element.name}}" id="nameField">
+
+    <label for="nameField">Email</label>
+    <input type="text" name="email" value="{{element.email}}" id="nameField">
+
+    <label for="nameField">Date: {{element.date_string}}</label>
+    <!-- <input type="text" name="date_string" value="{{element.date_string}}" name="" value="dd/mm/yyyy" id="nameField"> -->
+
+    <label for="nameField">Amount: {{element.amount}}</label>
+    <!-- <input type="text" name="amount" value="{{element.amount}}" name="" value="Euro" id="nameField"> -->
+
+    <label for="nameField">Amount in letters (German)</label>
+    <input type="text" name="amount_letters" value="{{element.amount_letters}}" name="" value="Euro" id="nameField">
+
+    <label for="nameField">Amount in letters (Italian)</label>
+    <input type="text" name="amount_letters_it" value="{{element.amount_letters_it}}" name="" value="Euro" id="nameField">
+
+    <label for="nameField">Street</label>
+    <input type="text" name="street" value="{{element.street}}" id="nameField">
+
+    <label for="nameField">Postal code</label>
+    <input type="text" name="postal_code" value="{{element.postal_code}}" id="nameField">
+
+    <label for="nameField">City</label>
+    <input type="text" name="city" value="{{element.city}}" id="nameField">
+
+    <label for="nameField">Country</label>
+    <input type="text" name="country" value="{{element.country}}" id="nameField">
+
+    <input class="button" type="submit" value="Save">
+    <input class="button button-outline" type="reset" value="Cancel">
+
+  </fieldset>
+</form>
+
+
+
+</div>
+{% endblock %}

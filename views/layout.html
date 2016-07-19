@@ -1,6 +1,9 @@
+
 <!DOCTYPE html>
 <html>
   <head>
+  {% block head %}
+
     <meta charset="utf-8">
     <title>{{ title }}</title>
     
@@ -18,9 +21,11 @@
     <link rel="stylesheet" href="/stylesheets/fonts.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/sticky-footer.css">
-
+    
+  {% endblock %}
   </head>
   <body>
+
 
     {% block header %}
     <header>
@@ -28,6 +33,9 @@
         <p>studio.5p2p.it</p>
       </div>
     </header>
+    {% endblock %}
+
+    {% block nav %}
     {% endblock %}
 
     {% block content %}
@@ -41,6 +49,7 @@
     </footer>
     {% endblock %}
 
-
+{% block foot %}
  </body>
+{% endblock %}
 </html>
