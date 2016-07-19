@@ -245,7 +245,7 @@ router.put('/invoice/edit/:id', function(req, res) {
     // );
   });
   // res.redirect('/test/invoice/view/'+req.params.id);
-  res.redirect('/test');
+  res.redirect('/test/invoice/view/'+req.params.id);
 });
 
 router.delete('/:id', function(req, res) {

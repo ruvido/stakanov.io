@@ -41,9 +41,8 @@ var Invoice = new Schema({
     invoice_id: String,
     name: String,
     import_unique_id: { type: String, unique: true },
-    // invoice_date: Date,
     invoice_date_string: { type: String, default: '00/00/0000'},
-    // event_date: Date,
+    job_date_string: { type: String, default: '00/00/0000'},
     event_name: String, 
     event_date_string: { type: String, default: '00/00/0000'},
     lordo: { type: Number, default: 0 },
@@ -70,6 +69,7 @@ var Payment = new Schema({
   name: String,
   amount: { type: Number, default: 0 },
   date_string: { type: String, default: '00/00/0000'},
+  job_date_string: { type: String, default: '00/00/0000'},
   amount_letters: String,
   amount_letters_it: String,
 // address
@@ -139,18 +139,19 @@ Payment.plugin(uniqueValidator);
 
 Invoice.methods.update_all_fields = function() {
 
+    this.job_date_string = this.invoice_date_string
    // if (!this.netto) {
-    this.applied_vat=0.19;
-    this.netto = this.lordo/(1+this.applied_vat);
-    this.vat   = this.netto*this.applied_vat;
+    this.applied_vat=0.19
+    this.netto = this.lordo/(1+this.applied_vat)
+    this.vat   = this.netto*this.applied_vat
   // }
 
   if (!this.invoice_id) {
     this.invoice_id = create_invoice_id(this)
   }
 
-  return this;
-};
+  return this
+}
 
 
 Invoice.methods.dudify = function() {

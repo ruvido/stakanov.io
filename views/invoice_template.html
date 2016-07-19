@@ -1,10 +1,17 @@
+{% block head %}
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
 <head>
     <title>{{title}}</title>
 </head>
+{% endblock %}
+
 <body>
+
+{% block header %}
+{% endblock %}
+
 
    <style>
     /*#invoice {padding: 4rem; max-width: 600px;}*/
@@ -36,7 +43,7 @@
 
         <section id="details">  
             <p><b>Rechnungsdatum:</b> {{invoice.invoice_date_string}}<br>
-            <b>Liefer- bzw. Leistungsdatum:</b> {{invoice.event_date_string}}<br>
+            <b>Liefer- bzw. Leistungsdatum:</b> {{invoice.job_date_string}}<br>
             <b>Ust-IdNr.:</b> DE303626375</p>
         </section>
 
@@ -105,5 +112,9 @@
                 </tr>
             </table>
         </article>
+
+{% block footer %}
+{% endblock %}
+
     </body>
     </html>
