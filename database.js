@@ -167,10 +167,10 @@ mongoose.model('events', Event)
 
 // --CONNECTION--------------------
 // mongoose.connect('mongodb://localhost/staka');
-mongoose.connect('mongodb://localhost/staka-test');
+// mongoose.connect('mongodb://localhost/staka-test');
 
 // mongoose.connect('mongodb://ruvido:solemio77@ds023425.mlab.com:23425/studio-production')
+mongoose.connect('mongodb://ruvido:solemio77@ds021333.mlab.com:21333/ruvido-test');
 //-----------------------------------------
 // mongoose.connect('mongodb://ruvido:solemio77@ds021333.mlab.com:21333/superheros');
-// mongoose.connect('mongodb://ruvido:solemio77@ds021333.mlab.com:21333/ruvido-test');
 // mongoose.connect('mongodb://ruvido:solemio77@ds023644.mlab.com:23644/studiogeek');
