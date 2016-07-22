@@ -18,7 +18,12 @@ var multer = require('multer');
 
 // MUCH NEEDED VARIABLES
 var publicFolder  = 'public'
-var invoiceFolder = 'data/donations' // public access
+var baseFolder    = 'data/donations' // public access
+var payTemplate   = path.join(publicFolder, baseFolder, 'templates/donation_de.html')
+var emailTemplate = path.join(publicFolder, baseFolder, 'templates/email.html')
+
+
+
 var routeRoot     = '/donations'
 var title = 'Donations'
 
@@ -44,16 +49,14 @@ router.get('/', function(req, res) {
   })
 })
 
-// router.get('/invoice/sent', function(req, res) {
-//   Invoice.find(function(err, invoices){
-//     // console.log(invoices)    
-//     res.render(
-//       // 'test',
-//       'invoice_sent_list',
-//       {title : 'Invoices API', invoices : invoices}
-//     );
-//   });
-// });
+router.get('/sent', function(req, res) {
+  Payment.find(function(err, elements){
+    res.render(
+      'donations/donations_sent_list',
+      {page : page, elements : elements}
+    );
+  });
+});
 
 
 router.get('/new', function(req, res) {
@@ -80,7 +83,6 @@ router.post('/new', function(req, res) {
   })
   .save(function(err, element) {
     console.log(element)
-    // res.end('payment: ' + element)
     res.redirect(routeRoot)
   })
 })
@@ -90,113 +92,101 @@ router.post('/new', function(req, res) {
 // // -----------------------------------------------------------
 
 // // CREATE AN INVOICE PDF AND SEND IT VIA EMAIL
-// router.get('/invoice/send/:id', function(req, res) {
-//   var query = {"_id": req.params.id}
-//   Invoice.findOne(query, function(err, invoice){
+router.get('/send/:id', function(req, res) {
+  var query = {"_id": req.params.id}
+  Payment.findOne(query, function(err, element){
 
-//     invoice.update_all_fields()
-//     invoice.sent = true
-//     invoice.save()
+    element.update_all_fields()
+    element.sent = true
+    element.save()
 
-//     console.log(invoice)
+    console.log(element)
 
-//     // var invoiceTemplate = 'public/data/invoices/templates/invoice_frao_de.html'
-//     // var invoicePdf      = 'public/data/invoices/'+invoice.invoice_id+'.pdf'
-//     // var emailTemplate   = 'public/data/invoices/templates/email_invoice_frao_de.html'
+    var payName     = path.join('pdf', element.unique_id+'.pdf')
+    var payPdf      = path.join(publicFolder, baseFolder, payName)
+    var payDownload = path.join('/', baseFolder, payName)
 
-//     var invoiceTemplate = path.join(publicFolder, invoiceFolder, 'templates/invoice_frao_de.html')
-//     var emailTemplate   = path.join(publicFolder, invoiceFolder, 'templates/email_invoice_frao_de.html')
+    var html = swig.renderFile(payTemplate, {
+        title   : element.name, 
+        element : element,
+        amount  : element.amount.toFixed(2),
+      })
 
-//     var invoiceName     = path.join('pdf', invoice.invoice_id+'.pdf')
-//     var invoicePdf      = path.join(publicFolder, invoiceFolder, invoiceName)
-//     var invoiceDownload = path.join('/', invoiceFolder, invoiceName)
+    var options = { 
+      format: 'A4',
+      "border": {
+        "top":    "10mm",
+        "right":  "20mm",
+        "bottom": "5mm",
+        "left":   "20mm"
+      },
 
-//     var html = swig.renderFile(invoiceTemplate, {
-//         title : 'Invoice for ' + invoice.name, 
-//         invoice : invoice,
-//         lordo   : invoice.lordo.toFixed(2),
-//         netto   : invoice.netto.toFixed(2),
-//         vat     : invoice.vat.toFixed(2),
-//         applied_vat: (invoice.applied_vat*100).toFixed(2)
-//       })
+      "header": {"height": "45mm"},
+      "footer": {"height": "28mm"}
 
-//     var options = { 
-//       format: 'A4',
-//       "border": {
-//         "top":    "10mm",
-//         "right":  "20mm",
-//         "bottom": "5mm",
-//         "left":   "20mm"
-//       },
-
-//       "header": {"height": "45mm"},
-//       "footer": {"height": "28mm"}
-
-//     }
+    }
    
-//     pdf.create(html, options).toFile(invoicePdf, function(err, res) {
-//       if (err) return console.log(err)
-//       console.log(res)
-//     // })
+    pdf.create(html, options).toFile(payPdf, function(err, res) {
+      if (err) return console.log(err)
+      console.log(res)
+    // })
     
 
-//     var transporter = nodemailer.createTransport({
-//       service: 'Gmail',
-//       auth: {
-//           user: 'ruvido@gmail.com', // Your email id
-//           pass: 'amo mia moglie' // Your password
-//       }
-//     })
+    var transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+          user: 'ruvido@gmail.com', // Your email id
+          pass: 'amo mia moglie' // Your password
+      }
+    })
 
-//     fs.readFile(emailTemplate, function (err, htmlText) {
-//       if (err) {
-//         return console.error(err)
-//       }
+    fs.readFile(emailTemplate, function (err, htmlText) {
+      if (err) {
+        return console.error(err)
+      }
 
-//       console.log(htmlText)
+      console.log(htmlText)
 
-//       var mailOptions = {
-//         from:   'Francesco Rao <hola@francescorao.net>',
-//         to:     invoice.email,
-//         bcc:    'fatture@5p2p.it',
-//         subject:'Ricevuta di pagamento | '+invoice.name,
-//         html:   htmlText,
-//         attachments: [{path: invoicePdf}]
-//       };
+      var mailOptions = {
+        // from:   'Francesco Rao <hola@francescorao.net>',
+        from:   '5pani2pesci <info@5p2p.it>',
+        to:     element.email,
+        bcc:    'donazioni@5p2p.it',
+        subject:'Ricevuta di donazione | '+element.name,
+        html:   htmlText,
+        attachments: [{path: payPdf}]
+      };
 
-//       transporter.sendMail(mailOptions, function(error, info){
-//         if(error) {
-//           console.log(error);
-//           invoice.sent_error = true
-//           invoice.save()
-//           // res.json({yo: 'error'});
-//         }
-//         else {
-//           console.log('Message sent: ' + info.response);
-//           // invoice.sent = true
-//           // invoice.save()
-//           // res.redirect('/test');
-//         }
-//       });
-//     });
-//   });
-// //////////
-//   invoice.pdf=invoiceDownload
-//     })
-// //////////
+      transporter.sendMail(mailOptions, function(error, info){
+        if(error) {
+          console.log(error);
+          element.sent_error = true
+          element.save()
+          // res.json({yo: 'error'});
+        }
+        else {
+          console.log('Message sent: ' + info.response);
+          // invoice.sent = true
+          // invoice.save()
+          // res.redirect('/test');
+        }
+      });
+    });
+  });
+//////////
+  element.pdf=payDownload
+    })
+//////////
 
-//   res.redirect('/test/invoice/sent');
-// })
+  res.redirect(routeRoot);
+})
 
 router.get('/view/:id', function(req, res) {
   var query = {"_id": req.params.id}
   Payment.findOne(query, function(err, element){
 
-    // TODO!!!
-    // invoice.set_payment_id()
-    // invoice.save()
-
-    console.log('caz: '+element)
+    element.update_all_fields()
+    element.save()
 
     res.render(
       // 'donations/donations_template',{
@@ -252,13 +242,13 @@ router.put('/edit/:id', function(req, res) {
 //   });
 // });
 
-// router.get('/invoice/delete/:id', function(req, res) {
-//   var query = {"_id": req.params.id};
-//   Invoice.findOneAndRemove(query, function(err, invoice){
-//     console.log(invoice)
-//     res.redirect('/test');
-//   });
-// });
+router.get('/delete/:id', function(req, res) {
+  var query = {"_id": req.params.id}
+  Payment.findOneAndRemove(query, function(err, element){
+    console.log(element)
+    res.redirect(routeRoot)
+  })
+})
 
 
 // // IMPORT DATA
@@ -351,7 +341,7 @@ router.put('/edit/:id', function(req, res) {
 module.exports = router;
 
 
-  // Invoice.remove({}, function(err) {
+  // Payment.remove({}, function(err) {
   //   if (err) {
   //     return console.log(err)
   //   }

@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends '../layout.html' %}
 
 
 {% block content %}
@@ -7,32 +7,25 @@
 
   <div class="row">
     <div class="column">
-      <h1>Sent Invoices</h1>
-      <p><a href="/test">Back to invoices</a></p>
+      <h1>Sent</h1>
+      <p><a href="{{page.root}}">Back</a></p>
     </div>
   </div>
 
 
   <div class="row tdrow">
   </div>
-  {% for invoice in invoices %}
-  {% if invoice.sent %}
+  {% for element in elements %}
+  {% if element.sent %}
   <div class="row tdrow">
-    <div class="column">{{invoice.invoice_id}}  </div> 
-    <div class="column">{{invoice.invoice_date_string}}</div> 
-    <div class="column">{{invoice.name}}        </div>
-    <div class="column">{{invoice.lordo}}       </div>
+    <div class="column">{{element.unique_id}}  </div> 
+    <div class="column">{{element.date_string}}</div> 
+    <div class="column">{{element.name}}        </div>
+    <div class="column">{{element.amount}}       </div>
 
-<!--     <div class="column"><a href="/test/invoice/{{invoice.id}}">View</a></div>
-    {% if invoice.pdf != '' %}
-    <div class="column"><a href="{{invoice.pdf}}">Download</a></div>
-    {% else %}
-    <div class="column">/</div>
-    {% endif %}
- -->
-    <div class="column"><a href="/test/invoice/view/{{invoice.id}}">View</a>
-    {% if invoice.pdf != '' %} 
-     | <a href="{{invoice.pdf}}">Download</a>
+    <div class="column"><a href="{{page.root}}/view/{{element.id}}">View</a>
+    {% if element.pdf != '' %} 
+     | <a href="{{element.pdf}}">Download</a>
     {% endif %}
     </div>
   </div>
