@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+    <title>{{title}}</title>
+</head>
+<body>
+
+   <style>
+    /*#invoice {padding: 4rem; max-width: 600px;}*/
+    #pageHeader {font-size: 10px;}
+    #client {margin: 2rem 0;}
+    #details {text-align: right;}
+    #payment {margin: 2rem 0; width: 100%;} 
+    #payment tr td {width: 24%;}
+    #pageFooter tr td {font-size: 9px; width: 30%;}
+    /*.footertd {font-size: 0.8rem; width: 30%;}*/
+    #text {line-height: 1.2;}
+    #text table thead {color:red;}
+    p {margin: 0; padding: 0; padding-top: 6px;}
+    body{font-size: 12px;}
+    </style>
+
+    <article id="invoice">
+
+        <div id="pageHeader">
+            Francesco Rao, Ferdinandkopfstr. 12, 79117 Freiburg
+        </div>
+
+        <section id="client">    
+            <p>
+            {{invoice.name}}<br>
+            {{invoice.street}}<br>
+            {{invoice.postal_code}}, {{invoice.city}}<br>
+            {{invoice.country}}
+            </p>
+        </section>
+
+        <section id="details">  
+            <p><b>Rechnungsdatum:</b> {{invoice.invoice_date_string}}</p>
+            <p><b>Liefer- bzw. Leistungsdatum:</b> {{invoice.job_date_string}}</p>
+            <p><b>Ust-IdNr.:</b> DE303626375</p>
+        </section>
+
+        <h4>Rechnung Nr {{invoice.invoice_id}}</h4>
+
+        <section id="text">
+            <p>Herzlichen Dank für Ihr Vertrauen in unsere Produkte. Wir erlauben
+            uns folgende Beträge in Rechnung zu stellen und freuen uns, wenn wir
+            auch in Zukunft für Sie tätig werden dürfen.</p>
+
+            <table id="payment">
+                    <tr><td colspan="4"><hr/></td></tr>
+                    <tr>
+                        <th align="left">Beschreibung</th>
+                        <th align="left">Menge</th>
+                        <th align="left">Preis</th>
+                        <th align="left">Netto</th>
+                    </tr>
+                    <tr><td colspan="4"><hr/></td></tr>
+                    <tr>
+                        <td align="left">Portraitfotos</td>
+                        <td align="left">1</td>
+                        <td align="left">€ {{netto}}</td>
+                        <td align="left">€ {{netto}}</td>
+                    </tr>
+                    <tr>
+                        <td align="left"></td>
+                        <td align="left"></td>
+                        <td align="left"></td>
+                        <td align="left"></td>
+                    </tr>
+                    <tr>
+                        <td align="left"></td>
+                        <td align="left"></td>
+                        <td align="left">Summe netto</td>
+                        <td align="left">€ {{netto}}</td>
+                    </tr>
+                    <tr>
+                        <td align="left"></td>
+                        <td align="left"></td>
+                        <td align="left">+{{applied_vat}}% Ust</td>
+                        <td align="left">€ {{vat}}</td>
+                    </tr>
+                    <tr><td colspan="4"><hr/></td></tr>
+                    <tr>
+                        <td align="left"></td>
+                        <td align="left"></td>
+                        <td align="left"><b>Gesamt brutto</b></td>
+                        <td align="left"><b>€ {{lordo}}</b></td>
+                    </tr>
+            </table>
+
+            <p>Wir hoffen, den Auftrag zu Ihrer Zufriedenheit ausgeführt zu haben
+            und verbleiben</p>
+            <p>mit freundlichen Grüßen</p>
+            &nbsp;
+            <p>Francesco Rao</p>
+
+
+            <div id="pageFooter">
+            <table>
+                <tr>
+                    <td>Francesco Rao, Ferdinandkopfstr. 12, 79117
+                    Freiburg</td>
+                    <td class="footertd">Tel: 0157 544 13 662 <br>Email:
+                    hola@francescorao.net</td>
+                    <td class="footertd">Fidor Bank <br>IBAN: DE63 7002 2200 0072 6360
+                    07</td>
+                </tr>
+            </table>
+            </div>
+        </article>
+    </body>
+    </html>
