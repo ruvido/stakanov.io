@@ -1,9 +1,14 @@
+# stakanov.io
+
 tmp/*
 test/
+public/data/donations/pdf/*
+public/data/invoices/pdf/*
 *.sublime-project
 *.sublime-workspace
 .DS_Store
 
+# ---------------------------------
 # Logs
 logs
 *.log
