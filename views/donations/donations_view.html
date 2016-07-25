@@ -1,12 +1,15 @@
-{% extends 'donations_template.html' %}
+{% extends '../../public/data/donations/templates/donation_de.html' %}
 
 {% block nav %}
+<div style="margin:40px">
     <a href="{{page.root}}"><button type="submit">Back to List</button></a>
     <a href="{{page.root}}/edit/{{element.id}}"><button type="submit">Edit</button></a>
+</div>
 {% endblock %}
   
 {% block footer %}
-    <div style="margin-top:4rem"></div>
-    <a href="{{page.root}}/send/{{element.id}}"><button type="submit">Send to {{element.email}}</button></a>
-    <a href="{{page.root}}/delete/{{element.id}}"><button type="submit">Delete</button></a>
+<div style="margin:40px">
+  <a href="{{page.root}}/send/{{element.id}}"><button type="submit">Send to {{element.email}}</button></a>
+  <a href="{{page.root}}/delete/{{element.id}}"><button type="submit">Delete</button></a>
+</div>
 {% endblock %}

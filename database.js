@@ -69,17 +69,15 @@ var Invoice = new Schema({
     email : String
 })
 
-// var Donation = new Schema({
-//   name: String
-// })
 
 var Payment = new Schema({
 // general
   transaction_type: String, // donation or regular
-  // unique_id: { type: String, unique: true, default: moment().format('x') },
-  // import_unique_id: { type: String, unique: true, default: moment().format('x') },
-  unique_id: { type: String, unique: true},
+  unique_id: { type: String, unique: true },
+  // unique_id: String,
+  tmp_id: { type: Boolean, default: false },
   import_unique_id: { type: String, unique: true},
+  // import_unique_id: String,
 // details
   name: String,
   amount: Number,
@@ -116,33 +114,28 @@ var Event = new Schema({
 
 
 // --PLUGINS------------------------
-Invoice.plugin(uniqueValidator);
-Payment.plugin(uniqueValidator);
-// Donation.plugin(uniqueValidator);
-
+Invoice.plugin(uniqueValidator)
+Payment.plugin(uniqueValidator)
 
 // --METHODS------------------------
 
 Payment.pre('validate', function(next) {
-  var tmpId = moment().format('x')
-  this.unique_id=tmpId
-  this.import_unique_id=tmpId
+  if (!this.import_unique_id) {
+    var tmpId = moment().format('x')
+    this.unique_id=tmpId
+    this.import_unique_id=tmpId
+    this.tmp_id = true
+  }
   next()
 })
 
-// on every save
-// Invoice.pre('save', function(next) {
-//   this.import_unique_id=this.date+this.name+this.lordo
-//   next()
-// })
-
 Invoice.methods.update_all_fields = function() {
 
-    this.job_date_string = this.invoice_date_string
+  this.job_date_string = this.invoice_date_string
    // if (!this.netto) {
-    this.applied_vat=0.19
-    this.netto = this.lordo/(1+this.applied_vat)
-    this.vat   = this.netto*this.applied_vat
+  this.applied_vat=0.19
+  this.netto = this.lordo/(1+this.applied_vat)
+  this.vat   = this.netto*this.applied_vat
   // }
 
   if (!this.invoice_id) {
@@ -168,6 +161,11 @@ Payment.methods.update_all_fields = function() {
     this.unique_id = create_unique_id(this)
   }
 
+  if (this.tmp_id) {
+    this.unique_id = create_unique_id(this)
+    this.tmp_id = false
+  }
+
   return this
 }
 
@@ -185,9 +183,10 @@ mongoose.model('events',   Event)
 // --CONNECTION--------------------
 // mongoose.connect('mongodb://localhost/staka');
 // mongoose.connect('mongodb://localhost/staka-test');
+// mongoose.connect('mongodb://localhost/caz-test');
 
-// mongoose.connect('mongodb://ruvido:solemio77@ds023425.mlab.com:23425/studio-production')
-mongoose.connect('mongodb://ruvido:solemio77@ds021333.mlab.com:21333/ruvido-test');
+mongoose.connect('mongodb://ruvido:solemio77@ds023425.mlab.com:23425/studio-production')
+// mongoose.connect('mongodb://ruvido:solemio77@ds021333.mlab.com:21333/ruvido-test');
 //-----------------------------------------
 // mongoose.connect('mongodb://ruvido:solemio77@ds021333.mlab.com:21333/superheros');
 // mongoose.connect('mongodb://ruvido:solemio77@ds023644.mlab.com:23644/studiogeek');

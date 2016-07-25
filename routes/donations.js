@@ -28,7 +28,7 @@ var routeRoot     = '/donations'
 var title = 'Donations'
 
 var page = {
-  title : 'Donation',
+  title : 'Donations',
   root : routeRoot,
   signature : path.join('/images','signature-frao.png')
 }
@@ -38,7 +38,7 @@ var page = {
 // -----------------------------------------------------------
 router.get('/', function(req, res) {
   Payment.find(function(err, elements){
-    console.log(elements)    
+    // console.log(elements)
     res.render(
       'donations/donations_list',{
         title     : title,
@@ -88,11 +88,12 @@ router.post('/new', function(req, res) {
 })
 
 
-// // SINGLE INVOICE OPERATIONS
+// // SINGLE OPERATIONS
 // // -----------------------------------------------------------
 
-// // CREATE AN INVOICE PDF AND SEND IT VIA EMAIL
+// // CREATE A PDF AND SEND IT VIA EMAIL
 router.get('/send/:id', function(req, res) {
+  console.log('----mandiamo roba')
   var query = {"_id": req.params.id}
   Payment.findOne(query, function(err, element){
 
@@ -121,16 +122,15 @@ router.get('/send/:id', function(req, res) {
         "left":   "20mm"
       },
 
-      "header": {"height": "45mm"},
+      "header": {"height": "20mm"},
       "footer": {"height": "28mm"}
 
     }
    
     pdf.create(html, options).toFile(payPdf, function(err, res) {
+      console.log('---------pdf making')
       if (err) return console.log(err)
       console.log(res)
-    // })
-    
 
     var transporter = nodemailer.createTransport({
       service: 'Gmail',
@@ -162,35 +162,33 @@ router.get('/send/:id', function(req, res) {
           console.log(error);
           element.sent_error = true
           element.save()
-          // res.json({yo: 'error'});
         }
         else {
-          console.log('Message sent: ' + info.response);
-          // invoice.sent = true
-          // invoice.save()
-          // res.redirect('/test');
+          console.log('Message sent: ' + info.response)
         }
-      });
-    });
-  });
+      })
+    })
+  })
 //////////
   element.pdf=payDownload
     })
 //////////
 
-  res.redirect(routeRoot);
+  res.redirect(routeRoot)
 })
+
 
 router.get('/view/:id', function(req, res) {
   var query = {"_id": req.params.id}
   Payment.findOne(query, function(err, element){
-
+  
     element.update_all_fields()
     element.save()
 
     res.render(
-      // 'donations/donations_template',{
       'donations/donations_view',{
+      // 'donations/caz',{
+      // '../public/data/donations/templates/donation_de',{
         title     : 'Donation for ' + element.name, 
         element   : element,
         amount    : element.amount.toFixed(2),
@@ -234,13 +232,6 @@ router.put('/edit/:id', function(req, res) {
   res.redirect(routeRoot)
 })
 
-// router.delete('/:id', function(req, res) {
-//   var query = {"_id": req.params.id};
-//   Invoice.findOneAndRemove(query, function(err, invoice){
-//     console.log(invoice)
-//     res.redirect('/test');
-//   });
-// });
 
 router.get('/delete/:id', function(req, res) {
   var query = {"_id": req.params.id}
@@ -251,98 +242,96 @@ router.get('/delete/:id', function(req, res) {
 })
 
 
-// // IMPORT DATA
-// // -----------------------------------------------------------
+// IMPORT DATA
+// -----------------------------------------------------------
 
-// // var storage =   multer.diskStorage({
-// //   destination: function (req, file, callback) {
-// //     callback(null, './uploads');
-// //   },
-// //   filename: function (req, file, callback) {
-// //     callback(null, file.fieldname + '-' + Date.now());
-// //   }
-// // });
-// // var upload = multer({ storage : storage}).single('userPhoto');
+router.get('/import', function(req, res) {
+  res.render(
+    'donations/donations_import',
+    {page : page}
+  )
+})
 
+router.post('/import', function(req, res) {
 
+  var paymentType = 'donation'
 
-// router.get('/invoice/import', function(req, res) {
-//   res.render(
-//     'invoice_import',
-//     {title : 'Invoices API'}
-//   )
-// })
+  var storage =   multer.diskStorage({
+    destination: function (req, file, callback) {
+      callback(null, './tmp')
+    }
+  })
+  var upload = multer({ storage : storage}).single('upload');
 
-// router.post('/invoice/import', function(req, res) {
-// // router.post('/caz',function(req,res){
+  upload(req,res,function(err) {
+    if(err) {
+      console.log(error)
+    }
 
-//   var storage =   multer.diskStorage({
-//     destination: function (req, file, callback) {
-//       callback(null, './tmp')
-//     }
-//   })
-//   var upload = multer({ storage : storage}).single('upload');
+    console.log('file:', req.file)
 
-//   upload(req,res,function(err) {
-//     if(err) {
-//       console.log(error)
-//     }
+    var inputFile = req.file.path
+    fs.readFile(inputFile, 'utf8', function (err,data) {
+      if (err) {
+        return console.log(err);
+      }
 
-//     console.log('file:', req.file)
+      parse(data, {comment: '#', delimiter: ';'}, function(err, output){
+        var firstRow=1 // skip header
+        for (var ii=firstRow; ii < output.length; ii++){
 
-//     var inputFile = req.file.path
-//     fs.readFile(inputFile, 'utf8', function (err,data) {
-//       if (err) {
-//         return console.log(err);
-//       }
+          var date = output[ii][0].replace(/\./g, '/')
+          var name = output[ii][1]
+          var amount= parseFloat(output[ii][3].replace(/\./g, '').replace(/\,/g, '.'))
 
-//       parse(data, {comment: '#', delimiter: ';'}, function(err, output){
-//         var firstRow=1 // skip header
-//         for (var ii=firstRow; ii < output.length; ii++){
+          if ( amount > 0 ) {
 
-//           var date = output[ii][0].replace(/\./g, '/')
-//           var name = output[ii][1]
-//           var lordo= parseFloat(output[ii][3].replace(/\./g, '').replace(/\,/g, '.'))
+            var import_unique_id=date+name+amount
 
-//           if ( lordo > 0 ) {
+            new Payment({
+              transaction_type : paymentType,
+              name        : name,
+              amount      : amount,
+              date_string : date,
+              import_unique_id : import_unique_id
+            })
+            .save(function(err, payment) {
+              if (err) {
+                return console.log(err)
+              }
+              console.log('--------'+payment)
+            })
 
-//             var import_unique_id=date+name+lordo
+            // console.log('---'+ii+'-------------')
+            // console.log('date: '+ date)
+            // console.log('name: '+ name)
+            // console.log('amount: '+ amount)
+            // console.log('import_unique_id: '+ import_unique_id)
+          }
+        }
+      })
+    })
+  })
 
-//             new Invoice({
-//               name                : name,
-//               lordo               : lordo,
-//               invoice_date_string : date,
-//               import_unique_id    : import_unique_id
-//             })
-//             .save(function(err, invoice) {
-//               if (err) {
-//                 return console.log(err);
-//               }
-//             });
+  res.redirect(routeRoot)
 
-//             console.log('---'+ii+'-------------')
-//             console.log('date: '+ date)
-//             console.log('name: '+ name)
-//             console.log('lordo: '+ lordo)
-//             console.log('import_unique_id: '+ import_unique_id)
-//           }
-//         }
-//       })
-//     })
-//   })
-//   /////////////////////
+})
 
-//   res.redirect('/test')
+router.get('/delete-all', function(req, res) {
 
-// })
+  Payment.remove({}, function(err) {
+    if (err) {
+      return console.log(err)
+    }
+  })
+
+  res.redirect(routeRoot)
+
+})
+
 
 // -----------------------------------------------------------
 // -----------------------------------------------------------
 module.exports = router;
 
 
-  // Payment.remove({}, function(err) {
-  //   if (err) {
-  //     return console.log(err)
-  //   }
-  // })

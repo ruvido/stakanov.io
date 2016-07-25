@@ -7,109 +7,103 @@
 <body>
 
    <style>
-    /*#invoice {padding: 4rem; max-width: 600px;}*/
-    #pageHeader {font-size: 10px;}
-    #client {margin: 2rem 0;}
-    #details {text-align: right;}
-    #payment {margin: 2rem 0; width: 100%;} 
-    #payment tr td {width: 24%;}
-    #pageFooter tr td {font-size: 9px; width: 30%;}
-    /*.footertd {font-size: 0.8rem; width: 30%;}*/
-    #text {line-height: 1.2;}
-    #text table thead {color:red;}
-    p {margin: 0; padding: 0; padding-top: 6px;}
-    body{font-size: 12px;}
+    h1,h2,h3,p,table {margin: 0; padding: 0;}
+    body{font-size: 9px;}
+    p {padding-top: 6px;}
+    h1{font-size: 22px; font-weight: bold; text-transform: uppercase;}
+    h2{font-size: 12px}
+    h3{font-size: 12px; font-weight: bold;}
+    table {width:100%; margin: 10px 0 10px 0;}
+    th{font-size: 9px; font-weight: normal;}
+    td{font-size: 12px; vertical-align:top}
+    .hspan {width: 50px;}
+    .text {font-size: 9px;}
     </style>
 
-    <article id="invoice">
-
-        <div id="pageHeader">
-            Francesco Rao, Ferdinandkopfstr. 12, 79117 Freiburg
-        </div>
-
-        <section id="client">    
-            <p>
-            {{invoice.name}}<br>
-            {{invoice.street}}<br>
-            {{invoice.postal_code}}, {{invoice.city}}<br>
-            {{invoice.country}}
-            </p>
-        </section>
-
-        <section id="details">  
-            <p><b>Rechnungsdatum:</b> {{invoice.invoice_date_string}}</p>
-            <p><b>Liefer- bzw. Leistungsdatum:</b> {{invoice.job_date_string}}</p>
-            <p><b>Ust-IdNr.:</b> DE303626375</p>
-        </section>
-
-        <h4>Rechnung Nr {{invoice.invoice_id}}</h4>
-
-        <section id="text">
-            <p>Herzlichen Dank für Ihr Vertrauen in unsere Produkte. Wir erlauben
-            uns folgende Beträge in Rechnung zu stellen und freuen uns, wenn wir
-            auch in Zukunft für Sie tätig werden dürfen.</p>
-
-            <table id="payment">
-                    <tr><td colspan="4"><hr/></td></tr>
-                    <tr>
-                        <th align="left">Beschreibung</th>
-                        <th align="left">Menge</th>
-                        <th align="left">Preis</th>
-                        <th align="left">Netto</th>
-                    </tr>
-                    <tr><td colspan="4"><hr/></td></tr>
-                    <tr>
-                        <td align="left">Portraitfotos</td>
-                        <td align="left">1</td>
-                        <td align="left">€ {{netto}}</td>
-                        <td align="left">€ {{netto}}</td>
-                    </tr>
-                    <tr>
-                        <td align="left"></td>
-                        <td align="left"></td>
-                        <td align="left"></td>
-                        <td align="left"></td>
-                    </tr>
-                    <tr>
-                        <td align="left"></td>
-                        <td align="left"></td>
-                        <td align="left">Summe netto</td>
-                        <td align="left">€ {{netto}}</td>
-                    </tr>
-                    <tr>
-                        <td align="left"></td>
-                        <td align="left"></td>
-                        <td align="left">+{{applied_vat}}% Ust</td>
-                        <td align="left">€ {{vat}}</td>
-                    </tr>
-                    <tr><td colspan="4"><hr/></td></tr>
-                    <tr>
-                        <td align="left"></td>
-                        <td align="left"></td>
-                        <td align="left"><b>Gesamt brutto</b></td>
-                        <td align="left"><b>€ {{lordo}}</b></td>
-                    </tr>
-            </table>
-
-            <p>Wir hoffen, den Auftrag zu Ihrer Zufriedenheit ausgeführt zu haben
-            und verbleiben</p>
-            <p>mit freundlichen Grüßen</p>
-            &nbsp;
-            <p>Francesco Rao</p>
+{% block nav %}
+{% endblock %}
 
 
-            <div id="pageFooter">
-            <table>
-                <tr>
-                    <td>Francesco Rao, Ferdinandkopfstr. 12, 79117
-                    Freiburg</td>
-                    <td class="footertd">Tel: 0157 544 13 662 <br>Email:
-                    hola@francescorao.net</td>
-                    <td class="footertd">Fidor Bank <br>IBAN: DE63 7002 2200 0072 6360
-                    07</td>
-                </tr>
-            </table>
-            </div>
-        </article>
-    </body>
-    </html>
+    <section>
+        {{element.unique_id}}
+    </section>
+
+    <section style="margin: 40px 0 0 0">    
+        <h1>5pani2pesci e.V.</h1>
+        <h2>Ferdinand-kopfstr. 12, 79117 Freiburg (DE302434481)</h2>
+    </section>
+
+    <section style="margin: 20px 0 10px 0">    
+        <h3>Bestätigung über Geldzuwendungen/Mitgliedsbeitrag</h3>
+        <p>
+            im Sinne des § 10b des Einkommensteuergesetzes an eine der in § 5 Abs. 1 Nr. 9 des Körperschaftsteuergesetzes bezeichneten Körperschaften, Personenvereinigungen oder Vermögensmassen.
+        </p>
+    </section>
+
+    <table>
+        <tr><td colspan="3"><hr/></td></tr>
+        <tr>
+            <th align="left">Name und Anschrift des Zuwendenden:</th>
+            <th align="left"></th>
+            <th align="left"></th>
+        </tr>
+        <tr>
+            <td align="left">{{element.name}}</td>
+            <td colspan="2" align="left">{{element.street}}, {{element.postal_code}} {{element.city}}, {{element.country}}</td>
+        </tr>
+        <tr><td colspan="3"><hr/></td></tr>
+        <tr>
+            <th align="left">Betrag der Zuwendung in Ziffern</th>
+            <th align="left">in Buchstaben</th>
+            <th align="left">Tag der Zuwendung</th>
+        </tr>
+        <tr>
+            <td align="left">{{element.amount}} euro</td>
+            <td align="left">{{element.amount_letters}} euro</td>
+            <td align="left">{{element.date_string}}</td>
+        </tr>
+        <tr><td colspan="3"><hr/></td></tr>
+        <tr>
+        <td colspan="2" align="left" class="text">
+        Es handelt sich um den Verzicht auf Erstattung von Aufwendungen.
+        </td>
+        <td class="text">Ja ▢ &nbsp; &nbsp; &nbsp; Nein X</td>
+        </tr>
+    </table>
+
+    <table>
+    <tr>
+        <td class="text"><div class="hspan">▢</div></td>
+        <td class="text">Wir sind wegen Förderung ................................................................................nach dem Freistellungsbescheid bzw. nach der Anlage zum Körperschaftsteuerbescheid des Finanzamtes ................ StNr. ................, vom ................ für den letzten Veranlagungszeitraum .................. nach § 5 Abs. 1 Nr. 9 des Körperschaft-steuergesetzes von der Körperschaftsteuer und nach § 3 Nr. 6 des Gewerbesteuergesetzes von der Gewerbesteuer befreit.</td>
+    </tr>
+        
+    <tr>
+        <td class="text"><div class="hspan">X</div></td>
+        <td class="text">Die Einhaltung der satzungsmäßigen Voraussetzungen nach den §§ 51, 59, 60 und 61 AO wurde vom Finanzamt Stadt Freiburg, StNr. 06470/19821 mit Bescheid vom 11/08/2015 nach § 60a AO gesondert festgestellt. Wir fördern nach unserer Satzung der Religion, insbesondere die Verbreitung des Glaubens der römisch-katholischen Glaubenslehre, insbesondere in Bezug auf das Ehe-Sakrament.</td>
+    </tr>
+    </table>
+
+    <p>Es wird bestätigt, dass die Zuwendung nur zur Förderung der Religion, insbesondere die Verbreitung des Glaubens der römisch-katholischen Glaubenslehre, insbesondere in Bezug auf das Ehe-Sakrament verwendet wird.</p>
+
+    <p>Nur für steuerbegünstigte Einrichtungen, bei denen die Mitgliedsbeiträge steuerlich nicht abziehbar sind:</p>
+    <p>▢  Es wird bestátigt, dass es sich nicht um einen Mitgliedsbeitrag handelt, dessen Abzug nach § 10b Abs. 1 des Einkommensteuergesetzes ausgeschlossen ist.</p>
+
+    <section>
+        <p><img src="https://studio.5p2p.it/images/signature-frao.png" style="width:100px; height:auto;"></p>
+        <p style="font-size: 12px">Freiburg, {{element.date_string}}</p>
+        <hr>
+        <p>(Ort, Datum und Unterschrift des Zuwendungsempfängers, Stellvertretender Vorsitzender)</p>
+    </section>
+
+    <section style="margin-top: 10px">
+        <p><b>Hinweis:</b></p>
+        <p>Wer vorsätzlich oder grob fahrlässig eine unrichtige Zuwendungsbestätigung erstellt oder veranlasst, dass Zuwendungen nicht zu den in der Zuwendungsbestätigung angegebenen steuerbegünstigten Zwecken verwendet werden, haftet für die entgangene Steuer (§ 10b Abs. 4 EStG, § 9 Abs. 3 KStG, § 9 Nr. 5 GewStG).</p>
+        <p>Diese Bestätigung wird nicht als Nachweis für die steuerliche Berücksichtigung der Zuwendung anerkannt, wenn das Datum des Freistellungs-bescheides länger als 5 Jahre bzw. das Datum der Feststellung der Einhaltung der satzungsmäßigen Voraussetzungen nach § 60a Abs. 1 AO länger als 3 Jahre seit Ausstellung des Bescheides zurückliegt (§ 63 Abs. 5 AO).</p>
+    </section>
+    
+
+{% block footer %}
+{% endblock %}
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends '../layout.html' %}
 
 
 {% block content %}
@@ -7,8 +7,8 @@
 
   <div class="row">
     <div class="column">
-      <h1>Invoices</h1>
-      <p><a href="/test">Back to Invoices</a></p>
+      <h1>{{page.title}}</h1>
+      <p><a href="{{page.root}}">Back</a></p>
     </div>
   </div>
 
@@ -18,7 +18,7 @@
     <div class="column">
       <form id       =  "uploadForm"
            enctype   =  "multipart/form-data"
-           action    =  "/test/invoice/import"
+           action    =  "{{page.root}}/import"
            method    =  "post"
       >
       <input type="file" name="upload" />
